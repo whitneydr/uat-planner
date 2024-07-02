@@ -4,25 +4,25 @@ import AcceptanceCriteria from "@/app/ui/dashboard/projects/acceptance-criteria"
 import Progress from "@/app/ui/dashboard/projects/progress";
 import {projects} from '@/app/lib/placeholder-data';
 
-interface Project {
-    id: string,
-    title: string,
-    summary?: string,
-    deadline?: Date,
-    status: 'In progress' | 'Complete' | 'Backlog',
-    owner: string,
-    tests?: string[],
-    acs?: AcceptanceCriteria[]
-}
+// interface Project {
+//     id: string,
+//     title: string,
+//     summary?: string,
+//     deadline?: Date,
+//     status: 'In progress' | 'Complete' | 'Backlog',
+//     owner: string,
+//     tests?: string[],
+//     acs?: AcceptanceCriteria[]
+// }
 
-interface AcceptanceCriteria {
-    id?: string,
-    criteria?: string,
-    status?: 'In progress' | 'Complete' | 'No tests assigned'
-}
+// interface AcceptanceCriteria {
+//     id?: string,
+//     criteria?: string,
+//     status?: 'In progress' | 'Complete' | 'No tests assigned'
+// }
 
 export default async function Page({ params }: { params: { id: string } }) {
-    const projectId =  params.id;
+    const projectId =  params.id; // eg. UST
 
     console.log(`The params.id is ${projectId}`)
 
@@ -36,9 +36,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className="btn-back"><Link href="/projects"> Back to Project List</Link></div>
         <section>
             <h1>{projects[projectIndex].title}</h1>
-            <ProjectSummary />
+            <h2>Project summary</h2>
+            <p>{projects[projectIndex].summary}</p>
 
-            <AcceptanceCriteria />
+            <AcceptanceCriteria projectId={projectIndex} />
 
             <Progress />
 

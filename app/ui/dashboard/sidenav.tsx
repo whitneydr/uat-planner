@@ -26,22 +26,22 @@ const SideMenu = () => {
           <Image src="/icons/News.svg" width={40} height={40} alt="" />
           Reports
         </Link>
-        <Link href="/templates" className={pathname === '/templates' ? 'active' : ''}>
+        {/* <Link href="/templates" className={pathname === '/templates' ? 'active' : ''}>
           <Image src="/icons/Balance Transfer.svg" width={40} height={40} alt="" />
           Templates
-        </Link>
+        </Link> */}
         <Link href="/help-and-support">
           <Image src="/icons/Catalogue.svg" width={40} height={40} alt="" />
           Help and support
         </Link>
-        <Link href={"/admin"}>
+        {/* <Link href={"/admin"}>
           <Image src="/icons/Process Central.svg" width={40} height={40} alt="" />
           Administration
         </Link>
         <Link href={"/account"}>
           <Image src="/icons/Lock.svg" width={40} height={40} alt="" />
           Account details
-        </Link>
+        </Link> */}
         <Link href={"/log-out"}>
           <Image src="/icons/Exit.svg" width={40} height={40} alt="" />
           Log out

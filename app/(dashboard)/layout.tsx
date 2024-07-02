@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="">
           <SideMenu />
         </div>
-        <div className="">{children}</div>
+        <main>{children}</main>
       </div>
       </>
     );

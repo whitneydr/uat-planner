@@ -1,3 +1,4 @@
+import CreateProjectForm from "@/app/ui/dashboard/projects/create-project";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,9 +7,11 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
+    
     return (
         <>
         <h1>Create New Project</h1>
+        <CreateProjectForm />
         </>
     )
 }

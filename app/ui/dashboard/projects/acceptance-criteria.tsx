@@ -1,10 +1,24 @@
-const AcceptanceCriteria = () => {
-    return (
-        <>
-        <h2>Acceptance Criteria</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam reiciendis, nihil magni ducimus dolorem hic vero iusto fugiat atque cum minima eum quia recusandae error. Earum voluptate aliquam natus sed?</p>
-        </>
-    )
-}
+import AcceptanceCriteriaItem from "./ac-item";
+import { projects } from "@/app/lib/placeholder-data";
+
+const AcceptanceCriteria = ({ projectId }: { projectId: number }) => {
+  return (
+    <div id="acceptance-criteria" className="project-details-section">
+      <h2>Acceptance Criteria</h2>
+      <div className="ac-list">
+        {projects[projectId].acs.map((ac, index) => {
+          return (
+            <AcceptanceCriteriaItem
+              key={index}
+              id={ac.id}
+              criteria={ac.criteria}
+              status={ac.status}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
 export default AcceptanceCriteria;

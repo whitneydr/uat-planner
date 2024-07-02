@@ -10,13 +10,13 @@ export default async function Page({ params }: { params: { id: string } }) {
     return (
         <>
 
-        <main>
+  
         <div className="btn-back"><Link href="/projects"> Back to Project List</Link></div>
         <section>
             <h1>Unit Testing System</h1>
             <ProjectSummary />
 
-            <AcceptanceCriteria />
+            <AcceptanceCriteria projectId={id}/>
 
             <Progress />
 
@@ -64,7 +64,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                 </div>
             </div>
         </section>
-    </main>
+   
     </>
     )
 }

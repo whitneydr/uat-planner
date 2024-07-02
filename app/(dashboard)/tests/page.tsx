@@ -1,3 +1,4 @@
+import TestList from "@/app/ui/dashboard/tests/test-list";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,6 +10,7 @@ export default async function Page() {
     return (
         <>
         <h1>Tests</h1>
+        <TestList />
         </>
     )
 }

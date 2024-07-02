@@ -1,7 +1,4 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
-
 :root {
     --medium-forest: #1CA676;
     --dark-forest: #188660;
@@ -17,7 +14,6 @@
 }
 
 * {
-    font-family: "Poppins", Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
     margin:0;
     color: var(--darker-grey);
@@ -54,6 +50,10 @@ a {
 
 a:hover {
     color: var(--darker-forest);
+}
+
+button {
+  font:inherit;
 }
 
 .uts {
@@ -200,21 +200,7 @@ a:hover {
     width: 400px;
 }
 
-label {
-    display: flex;
-    flex-direction: column;
-    font-weight: 500;
-    margin: 16px 0;
-}
 
-input {
-    width: 400px;
-    height: 40px;
-    border: solid 1px var(--lighter-grey);
-    border-radius: 5px;
-    margin-top: 8px;
-    padding: 8px;
-}
 
 
 /* Common components */
@@ -258,6 +244,11 @@ input {
     font-weight: 500;
 }
 
+.btn-container {
+  display:flex;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
 
 /* Header */
 
@@ -362,6 +353,10 @@ header h1 {
 .test-block-headings:hover {
   box-shadow: none;
   cursor:default;
+}
+
+.test-block-headings.desktop {
+  display:flex;
 }
 
 .test-details {
@@ -645,14 +640,17 @@ header h1 {
 
 .progress-key ul {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   list-style-type: none;
   font-size: small;
   font-weight: 500;
+  text-wrap: nowrap;
+  flex-wrap: wrap;
+  padding-inline-start: 0;
 }
 
 .progress-key li {
-  margin: 5%;
+  margin: 24px 16px;
 }
 
 .progress-key li::before {
@@ -903,4 +901,32 @@ header h1 {
       padding:0;
       background-color: initial;
   }
+}
+
+/* Forms */
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  margin-top: 24px;
+}
+
+input, textarea, select {
+  width: 90%;
+  max-width: 640px;
+  border: solid 1px var(--lighter-grey);
+  border-radius: 5px;
+  margin-top: 8px;
+  padding: 8px;
+}
+
+textarea {
+  height: 150px;
+}
+
+.error-message {
+  color:red;
+  font-size: small;
+  margin-top: 8px;
 }

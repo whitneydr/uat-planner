@@ -24,7 +24,7 @@ export const users = [
 
 export const tests = [
     {
-        id: "UST 01.01-01",
+        id: "UST-01.01-01",
         title: "Registration button exists",
         projectID: "UST",
         projectName: "Unit Testing System",
@@ -32,11 +32,12 @@ export const tests = [
         status: "Passed",
         description: "Lorem ipsumLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper nibh justo, at vulputate eros varius sit amet.",
         steps: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
+        data: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
         acs: ["UTS AC1", "UTS AC3"],
         outcome: ""
     },
     {
-        id: "UST 01.01-02",
+        id: "UST-01.01-02",
         title: "Registration button opens page",
         projectID: "UST",
         projectName: "Unit Testing System",
@@ -44,11 +45,12 @@ export const tests = [
         status: "Failed",
         description: "Lorem ipsumLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper nibh justo, at vulputate eros varius sit amet.",
         steps: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
+        data: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
         acs: ["UTS AC1", "UTS AC3"],
         outcome: ""
     },
     {
-        id: "SAH 01.01-01",
+        id: "SAH-01.01-01",
         title: "Registration button exists",
         projectID: "SAH",
         projectName: "Savings Account Hub",
@@ -56,6 +58,7 @@ export const tests = [
         status: "To do",
         description: "Lorem ipsumLorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ullamcorper nibh justo, at vulputate eros varius sit amet.",
         steps: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
+        data: `<ul><li>Lorem</li><li>Ipsum</li></ul>`,
         acs: ["SAH AC1", "SAH AC3"],
         outcome: ""
     }
@@ -72,19 +75,19 @@ export const projects = [
         tests: ["UTS 01.01-01", "UTS 01.01-02", "UTS 01.02-01", "UTS 01.03-01"],
         acs: [
             {
-                id: "UTS AC1",
+                id: "AC1",
                 criteria: "Styling and typography must match designs provided",
-                status: "Complete"
+                status: "complete"
             },
             {
-                id: "UTS AC2",
+                id: "AC2",
                 criteria: "User must be able to log in securely",
-                status: "In progress"
+                status: "in-progress"
             },
             {
-                id: "UTS AC3",
+                id: "AC3",
                 criteria: "User dashboard must display all available projects",
-                status: "No tests assigned"
+                status: "to-do"
             }
         ]
     },
@@ -98,19 +101,19 @@ export const projects = [
         tests: ["SAH 01.01-01", "SAH 01.01-02", "SAH 01.02-01", "SAH 01.03-01"],
         acs: [
             {
-                id: "SAH AC1",
+                id: "AC1",
                 criteria: "Styling and typography must match designs provided",
-                status: "Complete"
+                status: "complete"
             },
             {
-                id: "SAH AC2",
+                id: "AC2",
                 criteria: "User must be able to log in securely",
-                status: "In Progress"
+                status: "in-progress"
             },
             {
-                id: "SAH AC3",
+                id: "AC3",
                 criteria: "User dashboard must display all available projects",
-                status: "No tests assigned"
+                status: "to-do"
             }
         ]
     },
@@ -124,19 +127,19 @@ export const projects = [
         tests: ["MRS 01.01-01", "MRS 01.01-02", "MRS 01.02-01", "MRS 01.03-01"],
         acs: [
             {
-                id: "MRS AC1",
-                criteria: "Styling and typography must match designs provided",
-                status: "Complete"
+                id: "AC1",
+                criteria: "Samples must be categorised by element type",
+                status: "complete"
             },
             {
-                id: "MRS AC2",
-                criteria: "User must be able to log in securely",
-                status: "In Progress"
+                id: "AC2",
+                criteria: "Life forms must be categorised by colour",
+                status: "in-progress"
             },
             {
-                id: "MRS AC3",
-                criteria: "User dashboard must display all available projects",
-                status: "No tests assigned"
+                id: "AC3",
+                criteria: "Temperature must be converted to freedom units",
+                status: "to-do"
             }
         ]
     },
@@ -150,19 +153,19 @@ export const projects = [
         tests: ["DT1 01.01-01", "DT1 01.01-02", "DT1 01.02-01", "DT1 01.03-01"],
         acs: [
             {
-                id: "DT1 AC1",
+                id: "AC1",
                 criteria: "Styling and typography must match designs provided",
-                status: "Complete"
+                status: "complete"
             },
             {
-                id: "DT1 AC2",
+                id: "AC2",
                 criteria: "User must be able to log in securely",
-                status: "In Progress"
+                status: "in-progress"
             },
             {
-                id: "DT1 AC3",
+                id: "AC3",
                 criteria: "User dashboard must display all available projects",
-                status: "No tests assigned"
+                status: "to-do"
             }
         ]
     }
