@@ -1,4 +1,4 @@
-import SideMenu from "../ui/dashboard/sidenav";
+
 
 export default async function Page() {
     return (
