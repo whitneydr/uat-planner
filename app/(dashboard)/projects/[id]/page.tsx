@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             <h1>Unit Testing System</h1>
             <ProjectSummary />
 
-            <AcceptanceCriteria projectId={id}/>
+            {/* <AcceptanceCriteria projectId={id}/> */}
 
             <Progress />
 
