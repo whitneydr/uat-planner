@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     return (
       <>
       <Header />
-      <div className="" style={{display: 'flex'}}>
+      <div className="dashboard-body" style={{display: 'flex'}}>
         
         <div className="">
           <SideMenu />

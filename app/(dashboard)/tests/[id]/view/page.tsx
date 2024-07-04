@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <>
-      <main>
+  
         <div className="btn-back">
           <Link href="/tests"> Back to Test List</Link>
         </div>
@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <AcceptanceCriteria projectId={testIndex} />
           <TestOutcome />
         </section>
-      </main>
+  
     </>
   );
 }

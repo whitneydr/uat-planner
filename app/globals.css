@@ -24,9 +24,18 @@ strong {
     font-weight:500;
 }
 
+body {
+  background-color: var(--highlight-blue);
+}
+
+header {
+  max-width: 1440px;
+  margin:auto;
+}
+
 main {
   width: 100%;
-  /* max-width:980px; */
+  max-width:980px;
   padding: 2%;  
   margin-bottom:96px;
 }
@@ -59,6 +68,13 @@ a:hover {
 
 button {
   font:inherit;
+}
+
+.dashboard-body {
+  max-width: 1440px;
+  height:100vh;
+  margin: auto;
+  background-color: #fff;
 }
 
 .uts {
