@@ -2,6 +2,7 @@ import Link from "next/link";
 import AcceptanceCriteria from "@/app/ui/dashboard/projects/acceptance-criteria";
 import { tests } from "@/app/lib/placeholder-data";
 import TestResult from "@/app/ui/dashboard/tests/test-result";
+import TestOutcome from "@/app/ui/dashboard/tests/test-outcome";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const testId = params.id; // eg. UST
@@ -32,6 +33,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <div dangerouslySetInnerHTML={{__html: testData}}></div>
 
           <AcceptanceCriteria projectId={testIndex} />
+          <TestOutcome />
         </section>
       </main>
     </>

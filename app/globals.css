@@ -5,6 +5,7 @@
     --darker-forest: #0a4530;
     --highlight-green: #DFF9EF;
     --dark-coral: #CD422D;
+    --highlight-blue: #F5FBFE;
     --ultra-light-grey: #FAFAFA;
     --lighter-grey: #E1E4E5;
     --light-grey: #AFB1B3;
@@ -38,6 +39,10 @@ h2 {
     font-weight: 600;
     font-size: 1.5em;
     line-height: 2;
+}
+
+h3 {
+  font-weight: 500;
 }
 
 p {
@@ -394,6 +399,12 @@ header h1 {
   margin-left: 5px;
 }
 
+select.test-status {
+  width:fit-content;
+  margin: 16px 0;
+  border-radius: 0;
+}
+
 .test-status.failed {
   background-color: var(--dark-coral);
   color:#fff;
@@ -433,6 +444,15 @@ header h1 {
   background-color: var(--ultra-light-grey);
   border-bottom: var(--light-grey) solid 4px;
   font-weight: 500;
+}
+
+.test-outcome {
+  background-color: var(--highlight-blue);
+  padding: 24px 8px;
+}
+
+.test-evidence {
+  margin: 24px 0;
 }
 
 @media screen and (min-width: 740px) {
@@ -905,6 +925,10 @@ header h1 {
 
 /* Forms */
 
+.test-form, .project-form {
+  max-width: 940px;
+}
+
 label {
   display: flex;
   flex-direction: column;
@@ -923,6 +947,31 @@ input, textarea, select {
 
 textarea {
   height: 150px;
+}
+
+input[type="file" i] {
+  background-color: #fff;
+  padding: 24px 16px;
+  border: dashed 2px var(--light-grey);
+}
+
+input::file-selector-button {
+  background-color: var(--dark-forest);
+  color: #fff;
+  font: inherit;
+  font-size: 1em;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  margin: 4px;
+  font-weight:500;
+  cursor: pointer;
+  text-decoration: none;
+
+}
+
+input::file-selector-button:hover {
+  background-color: var(--darker-forest);
 }
 
 .error-message {

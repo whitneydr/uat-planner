@@ -3,12 +3,25 @@ import Link from "next/link";
 import { useFormState } from "react-dom";
 
 import { Button } from "../../button";
+import { users } from "@/app/lib/placeholder-data";
+import { useState } from "react";
 
 const CreateProjectForm = () => {
     // const initialState = { message: null, errors: {} };
     // const [state, formAction] = useFormState(createInvoice, initialState);
 
-    function handleSubmit() {
+    const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
+
+    function handleAcInput(e: any) {
+        if (e.key === 'Enter') {
+            setAcceptanceCriteria([...acceptanceCriteria, e.target.value])
+        }
+    }
+
+    console.log('acceptance criteria', acceptanceCriteria);
+
+    function handleSubmit(e: any) {
+        e.preventDefault();
         console.log('The form has been submitted')
     }
 
@@ -26,8 +39,8 @@ const CreateProjectForm = () => {
                 <div id="summary-error" aria-live="polite" aria-atomic="true" className="error-message">Summary error</div>
             </div>
             <div>
-                <label htmlFor="acceptance-criteria">Acceptance criteria 1</label>
-                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
+                <label htmlFor="acceptance-criteria">Acceptance criteria</label>
+                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" onKeyUp={handleAcInput} />
                 <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
                 <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
                 <div id="ac-error" aria-live="polite" aria-atomic="true" className="error-message">AC error</div> 
@@ -50,10 +63,9 @@ const CreateProjectForm = () => {
                 <label htmlFor="project-owner">Project owner</label>
                 <select name="project-owner" id="project-owner">
                     <option value="Choose a project owner">Choose a project owner</option>
-                    <option value="harry-styles">Harry Styles</option>
-                    <option value="david-bowie">David Bowie</option>
-                    <option value="freddie-mercury">Freddie Mercury</option>
-                    <option value="brian-cox">Brian Cox</option>
+                    {users.map((user, index) => {
+                        return (<option key={index} value={user.id}>{`${user.firstName} ${user.lastName}`}</option>)
+                    })}
                 </select>
             </div>
             <div className="btn-container">

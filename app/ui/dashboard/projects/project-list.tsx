@@ -3,6 +3,7 @@ import { projects } from "@/app/lib/placeholder-data";
 
 const ProjectList = () => {
 
+ 
 
     return (
         <main>

@@ -3,18 +3,21 @@
 
 export const users = [
     {
+        id:1001,
         email: "test@test.com",
         password: "OpenSesame",
         firstName: "Harry",
         lastName: "Styles"
     },
     {
+        id:1002,
         email: "check@test.com",
         password: "Giraffe7",
         firstName: "James",
         lastName: "Blunt"
     },
     {
+        id:1003,
         email: "hermajesty@champion.net",
         password: "Fandango",
         firstName: "Freddie",
@@ -102,7 +105,7 @@ export const projects = [
         acs: [
             {
                 id: "AC1",
-                criteria: "Styling and typography must match designs provided",
+                criteria: "Styling and typography must match savings hub designs",
                 status: "complete"
             },
             {
@@ -154,17 +157,17 @@ export const projects = [
         acs: [
             {
                 id: "AC1",
-                criteria: "Styling and typography must match designs provided",
+                criteria: "Styling and typography must match decision tree designs provided",
                 status: "complete"
             },
             {
                 id: "AC2",
-                criteria: "User must be able to log in securely",
+                criteria: "User must be able to answer a series of questions",
                 status: "in-progress"
             },
             {
                 id: "AC3",
-                criteria: "User dashboard must display all available projects",
+                criteria: "Question cards must stack in mobile",
                 status: "to-do"
             }
         ]
