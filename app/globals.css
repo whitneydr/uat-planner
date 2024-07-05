@@ -71,8 +71,10 @@ button {
 }
 
 .dashboard-body {
+  display:flex;
   max-width: 1440px;
-  height:100vh;
+  min-height:100vh;
+  height: auto;
   margin: auto;
   background-color: #fff;
 }
@@ -92,7 +94,8 @@ button {
     width: 150px;
 }
 
-.nav-menu-mobile {
+@media screen and (max-width: 740px) {
+.navmenu {
     background-color: #fff;
     width:100%;
     display: flex;
@@ -102,25 +105,27 @@ button {
     border-top: var(--lighter-grey) solid 1px;
 }
 
-.nav-menu-mobile a {
+.navmenu a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     padding: 16px 0;
     font-size: small;
     text-decoration: none;
     width:100%;
     color: var(--darker-grey);
+    text-align: center;
 }
 
-.nav-menu-mobile a img {
+.navmenu a img {
     margin-bottom: 5px;
 }
 
-.nav-menu-mobile a.active {
+.navmenu a.active {
     background-color: var(--highlight-green);
     border-top: var(--dark-forest) solid 4px;
+}
 }
 
 .registration-main {

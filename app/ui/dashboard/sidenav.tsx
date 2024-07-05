@@ -7,23 +7,23 @@ const SideMenu = () => {
   const pathname = usePathname();
   console.log(pathname)
   return (
-    <nav className="nav desktop">
-      <div className="last-login">
+    <nav className="nav">
+      <div className="last-login desktop">
         <strong>Davy Jones</strong>
         <br />
         <span>Last logged in 31 July 2023 at 4.45pm</span>
       </div>
       <div className="navmenu">
         <Link href="/projects" className={pathname.includes('/projects') ? 'active' : ''}>
-          <Image src="/icons/Business.svg" width={40} height={40} alt="" />
+          <Image src="/icons/Business.svg" width={24} height={24} alt="" />
           Projects
         </Link>
         <Link href="/tests" className={pathname.includes('/tests') ? 'active' : ''}>
-          <Image src="/icons/Products.svg" width={40} height={40} alt="" />
+          <Image src="/icons/Products.svg" width={24} height={24} alt="" />
           Tests
         </Link>
         <Link href="/reports" className={pathname === '/reports' ? 'active' : ''}>
-          <Image src="/icons/News.svg" width={40} height={40} alt="" />
+          <Image src="/icons/News.svg" width={24} height={24} alt="" />
           Reports
         </Link>
         {/* <Link href="/templates" className={pathname === '/templates' ? 'active' : ''}>
@@ -31,7 +31,7 @@ const SideMenu = () => {
           Templates
         </Link> */}
         <Link href="/help-and-support">
-          <Image src="/icons/Catalogue.svg" width={40} height={40} alt="" />
+          <Image src="/icons/Catalogue.svg" width={24} height={24} alt="" />
           Help and support
         </Link>
         {/* <Link href={"/admin"}>
@@ -43,7 +43,7 @@ const SideMenu = () => {
           Account details
         </Link> */}
         <Link href={"/log-out"}>
-          <Image src="/icons/Exit.svg" width={40} height={40} alt="" />
+          <Image src="/icons/Exit.svg" width={24} height={24} alt="" />
           Log out
         </Link>
       </div>

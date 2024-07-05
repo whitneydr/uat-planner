@@ -11,6 +11,7 @@ const CreateProjectForm = () => {
     // const [state, formAction] = useFormState(createInvoice, initialState);
 
     const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
+    
 
     function handleAcInput(e: any) {
         if (e.key === 'Enter') {
