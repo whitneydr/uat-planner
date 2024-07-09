@@ -5,10 +5,12 @@ import { useFormState } from "react-dom";
 import { Button } from "../../button";
 import { users } from "@/app/lib/placeholder-data";
 import { useState } from "react";
+import { CreateProject } from "@/app/lib/actions";
+import { State } from "@/app/lib/actions";
 
-const CreateProjectForm = () => {
-    // const initialState = { message: null, errors: {} };
-    // const [state, formAction] = useFormState(createInvoice, initialState);
+const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
+    const initialState: State = { message: null, errors: {} };
+    const [state, formAction] = useFormState(CreateProject, initialState);
 
     const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
     
@@ -20,15 +22,23 @@ const CreateProjectForm = () => {
     }
 
     console.log('acceptance criteria', acceptanceCriteria);
+    console.log('planner users', plannerUsers);
 
     function handleSubmit(e: any) {
         e.preventDefault();
         console.log('The form has been submitted')
     }
 
+    interface User {
+        id: string,
+        firstname: string,
+        lastname: string,
+        password: string
+    }
+
     return (
 
-        <form className="project-form">
+        <form className="project-form" action={formAction}>
             <div>
                 <label htmlFor="project-title">Project Title</label>
                 <input type="text" id="project-title" name="project-title" aria-describedby="title-error" />
@@ -64,13 +74,13 @@ const CreateProjectForm = () => {
                 <label htmlFor="project-owner">Project owner</label>
                 <select name="project-owner" id="project-owner">
                     <option value="Choose a project owner">Choose a project owner</option>
-                    {users.map((user, index) => {
-                        return (<option key={index} value={user.id}>{`${user.firstName} ${user.lastName}`}</option>)
+                    {plannerUsers.map((user: User, index: number) => {
+                        return (<option key={index} value={user.id}>{`${user.firstname} ${user.lastname}`}</option>)
                     })}
                 </select>
             </div>
             <div className="btn-container">
-                <Button className="btn btn-primary" type="submit" onClick={handleSubmit}>Create project</Button>
+                <Button className="btn btn-primary" type="submit">Create project</Button>
                 <Link href="/projects" className="btn btn-secondary">Cancel</Link>
                 
             </div>
