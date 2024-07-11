@@ -10,12 +10,12 @@ interface Props {
 }
 
 const ProjectItem = ({id, title, deadline, owner, status, onClick}: Props) => {
-    let statusClass;
-    if (status.toLowerCase() === "in progress") {
-        statusClass = "in-progress"
-    } else if (status.toLowerCase() === "complete") {
-        statusClass = "complete"
-    }
+    // let statusClass;
+    // if (status.toLowerCase() === "in progress") {
+    //     statusClass = "in-progress"
+    // } else if (status.toLowerCase() === "complete") {
+    //     statusClass = "complete"
+    // }
 
     return (
         <Link className="project-block" href={`/projects/${id}/view`} key={id}>
@@ -26,7 +26,7 @@ const ProjectItem = ({id, title, deadline, owner, status, onClick}: Props) => {
                     </div>
                     <div className="project-owner"><span className="mobile"><strong>Project owner: </strong></span>{owner}</div>
                 </div>
-                <div className={`project-status ${statusClass}`}>{status}</div>
+                <div className={`project-status ${status}`}>{status}</div>
 
             </Link>
     )

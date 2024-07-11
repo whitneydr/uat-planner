@@ -1,8 +1,10 @@
+import { fetchLatestProjects } from "@/app/lib/data";
 import ProjectItem from "./project-item";
 import { projects } from "@/app/lib/placeholder-data";
 
-const ProjectList = () => {
-
+const ProjectList = async () => {
+    const latestProjects = await fetchLatestProjects();
+    console.log(latestProjects);
  
 
     return (
@@ -25,9 +27,13 @@ const ProjectList = () => {
 
                 </div>
 
-                {projects.map((project) => {
-                   return <ProjectItem key={project.id} id={project.id} title={project.title} deadline={project.deadline} owner={project.owner} status={project.status} onClick={() => console.log(project.title, "clicked")} />
+                {latestProjects.map((project,index) => {
+                   return <ProjectItem key={index} id={project.project_id} title={project.project_title} deadline={project.due_date ? project.due_date.toLocaleDateString('en-gb', { year:"numeric", month:"short", day:"numeric"}) : 'TBC'} owner={`${project.firstname} ${project.lastname}`} status={project.status? project.status : 'to-do'} onClick={() => console.log(project.title, "clicked")} />
                 })}
+
+                {/* {projects.map((project) => {
+                   return <ProjectItem key={project.id} id={project.id} title={project.title} deadline={project.deadline} owner={project.owner} status={project.status} onClick={() => console.log(project.title, "clicked")} />
+                })} */}
 
             </div>
             

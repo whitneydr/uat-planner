@@ -4,17 +4,17 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   
-  const projectTitle = searchParams.get('projectTitle');
+  const project_title = searchParams.get('project_title');
   const summary = searchParams.get('summary');
-  const dueDate = searchParams.get('dueDate');
-  const ownerID = searchParams.get('ownerID');
+  const due_date = searchParams.get('due_date');
+  const owner_id = searchParams.get('owner_id');
   const status = searchParams.get('status');
-  const projectID = projectTitle ? generateProjectId(projectTitle): "Placeholder title";
+  const project_id = project_title ? generateProjectId(project_title): "Placeholder title";
 
   // Create a user-friendly 3-letter project ID based on the name of the project
-  function generateProjectId(projectTitle: string) {
+  function generateProjectId(project_title: string) {
     const idLength = 3;
-    let words = projectTitle.split(' ');
+    let words = project_title.split(' ');
     let acronym = [];
 
     while (words.length < idLength) {
@@ -29,8 +29,8 @@ export async function GET(request: Request) {
 
  
   try {
-    if (!projectTitle) throw new Error('Project title required');
-    await sql`INSERT INTO Projects (projectID, projectTitle, DueDate, OwnerID, status, summary) VALUES (${projectID}, ${projectTitle}, ${dueDate}, ${ownerID}, ${status}, ${summary});`;
+    if (!project_title) throw new Error('Project title required');
+    await sql`INSERT INTO Projects (project_id, project_title, due_date, owner_id, status, summary) VALUES (${project_id}, ${project_title}, ${due_date}, ${owner_id}, ${status}, ${summary});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }

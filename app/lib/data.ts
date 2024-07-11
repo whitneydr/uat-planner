@@ -22,17 +22,40 @@ export async function fetchPlannerUsers() {
     }
   }
 
+  // Fetch latest projects
 
+  export async function fetchLatestProjects() {
+    noStore();
+    try {
+      const data = await sql`
+        SELECT projects.project_id, projects.project_title, projects.due_date, plannerusers.firstname, plannerusers.lastname, projects.status
+        FROM projects
+        JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
+        ORDER BY due_date ASC
+        `;
+  
+      const latestProjects = data.rows.map((project) => ({
+        ...project,
+      }));
+      return latestProjects;
+    } catch (error) {
+      console.error('Database Error:', error);
+      throw new Error('Failed to fetch the latest projects.');
+    }
+  }
+
+
+  // Fetch a project by ID
   export async function fetchProjectById(id: string) {
     noStore();
     try {
       const data = await sql`
         SELECT
           projects.id,
-          projects.projectid,
-          projects.projecttitle,
-          projects.duedate,
-          projects.ownerid,
+          projects.project_id,
+          projects.project_title,
+          projects.due_date,
+          projects.owner_id,
           projects.status,
           projects.summary
         FROM projects
