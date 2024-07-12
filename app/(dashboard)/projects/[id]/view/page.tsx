@@ -3,6 +3,7 @@ import ProjectSummary from "@/app/ui/dashboard/projects/project-summary";
 import AcceptanceCriteria from "@/app/ui/dashboard/projects/acceptance-criteria";
 import Progress from "@/app/ui/dashboard/projects/progress";
 import {projects} from '@/app/lib/placeholder-data';
+import { fetchProjectById } from "@/app/lib/data";
 
 // interface Project {
 //     id: string,
@@ -29,15 +30,19 @@ export default async function Page({ params }: { params: { id: string } }) {
     const currentProject = projects.find((project) => project.id === projectId);
     const projectIndex = projects.findIndex((project) =>  project.id === projectId);
 
+    const getProject = await fetchProjectById(projectId);
+    console.log(getProject);
+
     return (
         <>
 
         <main>
         <div className="btn-back"><Link href="/projects"> Back to Project List</Link></div>
         <section>
-            <h1>{projects[projectIndex].title}</h1>
+            <h1>{getProject.project_title}</h1>
+            <p><strong>Due date:</strong> {getProject.due_date.toLocaleDateString('en-gb', { year:"numeric", month:"short", day:"numeric"})}</p>
             <h2>Project summary</h2>
-            <p>{projects[projectIndex].summary}</p>
+            <p>{getProject.summary}</p>
 
             <AcceptanceCriteria projectId={projectIndex} />
 

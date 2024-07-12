@@ -59,7 +59,7 @@ export async function fetchPlannerUsers() {
           projects.status,
           projects.summary
         FROM projects
-        WHERE projects.id = ${id};
+        WHERE projects.project_id = ${id};
       `;
   
       const project = data.rows.map((project) => ({
