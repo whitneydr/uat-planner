@@ -1,7 +1,10 @@
+import { fetchLatestTests } from "@/app/lib/TestData";
 import TestItem from "./test-item";
 import { tests } from "@/app/lib/placeholder-data";
 
-const TestList = () => {
+const TestList = async () => {
+    const latestTests = await fetchLatestTests();
+    console.log('latestTests', latestTests);
 
     return (
         <>
@@ -23,8 +26,8 @@ const TestList = () => {
 
             </div>
 
-            {tests.map((test) => {
-                return <TestItem key={test.id} id={test.id} title={test.title} projectName={test.projectName} status={test.status} assignee={test.assignee} />
+            {latestTests.map((test, index) => {
+                return <TestItem key={index} id={test.test_id ? test.test_id : index} title={test.test_title} projectName={test.project_title} status={test.status} assignee={`${test.firstname} ${test.lastname}`} />
             })}
 
             

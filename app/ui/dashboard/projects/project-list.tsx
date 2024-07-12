@@ -1,4 +1,4 @@
-import { fetchLatestProjects } from "@/app/lib/data";
+import { fetchLatestProjects } from "@/app/lib/ProjectData";
 import ProjectItem from "./project-item";
 import { projects } from "@/app/lib/placeholder-data";
 

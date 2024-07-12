@@ -20,7 +20,7 @@ const TestItem = ({id, title, projectName, assignee, status}: Props) => {
             <div className="test-project"><span className="mobile"><strong>Project: </strong></span>{projectName}</div>
             <div className="test-assignee"><span className="mobile"><strong>Assigned to: </strong></span>{assignee}</div>
         </div>
-            <div className={`test-status ${status.toLowerCase()}`}>{status}</div>
+            <div className={`test-status ${status}`}>{status}</div>
             
         </Link>
     )

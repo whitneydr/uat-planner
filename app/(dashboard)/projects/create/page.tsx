@@ -1,4 +1,4 @@
-import { fetchPlannerUsers } from "@/app/lib/data";
+import { fetchPlannerUsers } from "@/app/lib/ProjectData";
 import CreateProjectForm from "@/app/ui/dashboard/projects/create-project";
 import { Metadata } from "next";
 
