@@ -83,8 +83,8 @@ export async function CreateProject(formData: FormData) {
 }
 
 
-
-// const UpdateProject = FormSchema.omit({ id: true, date: true });
+/*
+const UpdateProject = FormSchema.omit({ id: true, date: true });
 
 export async function updateInvoice(id: string, prevState: any, formData: FormData) {
 
@@ -118,3 +118,4 @@ export async function updateInvoice(id: string, prevState: any, formData: FormDa
     revalidatePath('/dashboard/invoices');
     redirect('/dashboard/invoices');
 }
+    */
