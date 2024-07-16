@@ -1,4 +1,6 @@
+
 import ProjectList from "@/app/ui/dashboard/projects/project-list";
+import ProjectListFilters from "@/app/ui/dashboard/projects/project-list-filters";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +13,7 @@ export default async function Page() {
         <>
         <h1>Projects</h1>
         <ProjectList />
+        {/* <ProjectListFilters /> */}
         </>
     )
 }

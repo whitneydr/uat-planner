@@ -7,27 +7,11 @@ import { users } from "@/app/lib/placeholder-data";
 import { useState } from "react";
 import { CreateProject } from "@/app/lib/actions";
 import { State } from "@/app/lib/actions";
+import createProject from "@/app/lib/createProject";
 
 const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
-    const initialState: State = { message: null, errors: {} };
-    const [state, formAction] = useFormState(CreateProject, initialState);
-
-    const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
     
 
-    function handleAcInput(e: any) {
-        if (e.key === 'Enter') {
-            setAcceptanceCriteria([...acceptanceCriteria, e.target.value])
-        }
-    }
-
-    console.log('acceptance criteria', acceptanceCriteria);
-    console.log('planner users', plannerUsers);
-
-    function handleSubmit(e: any) {
-        e.preventDefault();
-        console.log('The form has been submitted')
-    }
 
     interface User {
         id: string,
@@ -38,7 +22,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
 
     return (
 
-        <form className="project-form" action={formAction}>
+        <form className="project-form" action={createProject}>
             <div>
                 <label htmlFor="project-title">Project Title</label>
                 <input type="text" id="project-title" name="project-title" aria-describedby="title-error" />
@@ -51,7 +35,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
             </div>
             <div>
                 <label htmlFor="acceptance-criteria">Acceptance criteria</label>
-                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" onKeyUp={handleAcInput} />
+                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
                 <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
                 <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
                 <div id="ac-error" aria-live="polite" aria-atomic="true" className="error-message">AC error</div> 
@@ -62,7 +46,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
                 <div id="date-error" aria-live="polite" aria-atomic="true" className="error-message">Date error</div>
             </div>
             <div>
-                <label htmlFor="status">Status</label>
+                <label htmlFor="project-status">Status</label>
                 <select name="project-status" id="project-status">
                     <option value="to-do">To do</option>
                     <option value="in-progress">In progress</option>

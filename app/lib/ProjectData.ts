@@ -28,9 +28,9 @@ export async function fetchLatestProjects() {
   noStore();
   try {
     const data = await sql`
-        SELECT projects.project_id, projects.project_title, projects.due_date, plannerusers.firstname, plannerusers.lastname, projects.status
+        SELECT projects.project_id, projects.project_title, projects.due_date, projects.owner_id, plannerusers.firstname, plannerusers.lastname, projects.status
         FROM projects
-        JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
+        LEFT JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
         ORDER BY due_date ASC
         `;
 
@@ -58,7 +58,7 @@ export async function fetchProjectById(id: string) {
           projects.status,
           projects.summary
         FROM projects
-        WHERE projects.project_id = ${id};
+        WHERE projects.project_id = ${id}
       `;
 
     const project = data.rows.map((project) => ({
@@ -95,5 +95,30 @@ export async function fetchAcceptanceCriteria(id: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch acceptance criteria.");
+  }
+}
+
+// Get number of tests in a project
+
+// Fetch a project by ID
+export async function countProjectTests(id: string) {
+  noStore();
+  try {
+    const data = await sql`
+        SELECT COUNT(*),
+        project_id
+        FROM test_table
+        WHERE project_id = ${id}
+        GROUP BY project_id
+      `;
+
+    const project = data.rows.map((project) => ({
+      ...project,
+    }));
+    console.log(project);
+    return project[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch project.");
   }
 }
