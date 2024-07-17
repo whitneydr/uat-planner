@@ -44,6 +44,7 @@ export async function fetchLatestProjects() {
   }
 }
 
+
 // Fetch a project by ID
 export async function fetchProjectById(id: string) {
   noStore();

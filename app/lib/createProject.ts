@@ -1,23 +1,11 @@
 "use server";
 
-// import { z } from "zod";
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-// const FormSchema = z.object({
-//     id: z.string(),
-//     projectTitle: z.string({
-//         invalid_type_error: 'Please insert a title.',
-//     }),
-//     projectSummary: z.string(),
-
-// })
-
 export default async function createProject(formData: FormData) {
-//   "use server";
-
   const rawFormData = {
     project_title: formData.get("project-title")?.toString(),
     project_summary: formData.get("project-summary")?.toString(),
@@ -49,15 +37,14 @@ export default async function createProject(formData: FormData) {
   // mutate data
 
   try {
-    if (!rawFormData.project_title) throw new Error('Project title required');
+    if (!rawFormData.project_title) throw new Error("Project title required");
     await sql`INSERT INTO Projects (project_id, project_title, due_date, status, summary) VALUES 
     (${project_id}, ${rawFormData.project_title}, ${rawFormData.due_date}, ${rawFormData.status}, ${rawFormData.project_summary});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
 
-
   // revalidate cache
-  revalidatePath('/projects');
-  redirect('/projects');
+  revalidatePath("/projects");
+  redirect("/projects");
 }

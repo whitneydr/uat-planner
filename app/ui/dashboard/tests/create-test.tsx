@@ -5,6 +5,8 @@ import { useFormState } from "react-dom";
 import { Button } from "../../button";
 import { projects, users } from "@/app/lib/placeholder-data";
 import { useEffect, useRef, useState } from "react";
+import { fetchLatestProjects } from "@/app/lib/ProjectData";
+import createTest from "@/app/lib/createTest";
 
 const CreateTestForm = () => {
     // const initialState = { message: null, errors: {} };
@@ -12,7 +14,11 @@ const CreateTestForm = () => {
     const [workingProject, setWorkingProject] = useState("0");
     const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
     let currentProject = projects.findIndex(project => project.id === workingProject);
-    console.log('current project', currentProject)
+    console.log('current project', currentProject);
+
+    
+
+
 
     // useEffect(() => {
     //    console.log("working project", workingProject);
@@ -24,20 +30,13 @@ const CreateTestForm = () => {
         console.log("acceptance criteria", acceptanceCriteria)
     }, [acceptanceCriteria])
 
-    function handleSubmit() {
-        console.log('The form has been submitted')
-    }
-
-    function handleProjectSelection() {
-        
-    }
 
     return (
 
-        <form className="test-form">
+        <form className="test-form" action={createTest}>
             <div>
-                <label htmlFor="status">Project</label>
-                <select name="project-status" id="project-status" value={workingProject} onChange={e => setWorkingProject(e.target.value)}>
+                <label htmlFor="project-id">Project</label>
+                <select name="project-id" id="project-id" value={workingProject} onChange={e => setWorkingProject(e.target.value)}>
                 <option value="">Select project</option>
                     {projects.map((project, index) => {
                        return (<option key={index} value={project.id}>{project.title}</option>)
@@ -95,7 +94,7 @@ const CreateTestForm = () => {
             </div>
 
             <div>
-                <label htmlFor="status">Test type</label>
+                <label htmlFor="test-type">Test type</label>
                 <select name="test-type" id="test-type">
                     <option value="automated">Automated</option>
                     <option value="manual">Manual</option>
@@ -127,7 +126,7 @@ const CreateTestForm = () => {
                 </select>
             </div>
             <div className="btn-container">
-                <Button className="btn btn-primary" type="submit" onClick={handleSubmit}>Create test</Button>
+                <Button className="btn btn-primary" type="submit">Create test</Button>
                 <Link href="/tests" className="btn btn-secondary">Cancel</Link>
                 
             </div>
