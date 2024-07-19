@@ -35,8 +35,8 @@ const CreateNewTestForm = ({plannerUsers, projects,}: {plannerUsers: User[]; pro
         <form className="project-form" action={createNewTest}>
              <div>
                 <label htmlFor="project-title">Project title</label>
-                <select name="project-title" id="project-title">
-                <option value="" disabled>Select project</option>
+                <select name="project-title" id="project-title" defaultValue="">
+                <option value="" disabled>Select a project</option>
                     {projects.map((project:Project, index: number) => {
                        return (<option key={index} value={project.id}>{project.project_title}</option>)
                     })}

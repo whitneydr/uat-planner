@@ -23,6 +23,19 @@ export async function fetchPlannerUsers() {
   }
 }
 
+// Fetch user name by id
+
+export async function fetchUserName(id: string) {
+  const data = await sql`SELECT firstname, lastname FROM plannerUsers WHERE id::varchar = ${id}`;
+  console.log('fetch user name', data)
+  if (data.rows.length >= 1) {
+    return `${data.rows[0].firstname} ${data.rows[0].lastname}`;
+  } else {
+    return `TBC`
+  }
+  
+}
+
 // Fetch latest projects
 
 export async function fetchLatestProjects() {
@@ -47,7 +60,7 @@ export async function fetchLatestProjects() {
 }
 
 
-// Fetch a project by ID
+// Fetch a project by short ID eg. 'UTS' or 'SAH'
 export async function fetchProjectById(id: string) {
   noStore();
   try {
