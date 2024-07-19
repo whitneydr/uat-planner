@@ -410,7 +410,7 @@ header h1 {
 
 .test-status {
   background-color: var(--lighter-grey);
-  width:70px;
+  width:100px;
   height:fit-content;
   padding: 8px;
   text-align: center;

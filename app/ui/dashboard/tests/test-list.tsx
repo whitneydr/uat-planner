@@ -2,9 +2,9 @@ import { fetchLatestTests } from "@/app/lib/TestData";
 import TestItem from "./test-item";
 import { tests } from "@/app/lib/placeholder-data";
 
-const TestList = async (projectFilter: any) => {
+const TestList = async () => {
     const latestTests = await fetchLatestTests();
-    console.log('latestTests', latestTests);
+    console.log('latestTests from TestList', latestTests);
 
     return (
         <>

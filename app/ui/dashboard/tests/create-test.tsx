@@ -7,14 +7,27 @@ import { projects, users } from "@/app/lib/placeholder-data";
 import { useEffect, useRef, useState } from "react";
 import { fetchLatestProjects } from "@/app/lib/ProjectData";
 import createTest from "@/app/lib/createTest";
+import ProjectSelector from "./project-selector";
 
-const CreateTestForm = () => {
+
+const CreateTestForm = ({projects}: {projects: any}, {plannerUsers}: {plannerUsers: any}) => {
+
+    interface User {
+        id: string,
+        firstname: string,
+        lastname: string,
+        password: string
+    }
+
     // const initialState = { message: null, errors: {} };
     // const [state, formAction] = useFormState(createInvoice, initialState);
     const [workingProject, setWorkingProject] = useState("0");
     const [acceptanceCriteria, setAcceptanceCriteria] = useState<string[]>([]);
-    let currentProject = projects.findIndex(project => project.id === workingProject);
-    console.log('current project', currentProject);
+    //let currentProject = projects.findIndex(project => project.id === workingProject);
+    // console.log('current project', currentProject);
+    console.log('projects', projects);
+    console.log('users', plannerUsers);
+   
 
     
 
@@ -29,7 +42,7 @@ const CreateTestForm = () => {
     useEffect(() => {
         console.log("acceptance criteria", acceptanceCriteria)
     }, [acceptanceCriteria])
-
+    
 
     return (
 
@@ -38,11 +51,12 @@ const CreateTestForm = () => {
                 <label htmlFor="project-id">Project</label>
                 <select name="project-id" id="project-id" value={workingProject} onChange={e => setWorkingProject(e.target.value)}>
                 <option value="">Select project</option>
-                    {projects.map((project, index) => {
-                       return (<option key={index} value={project.id}>{project.title}</option>)
+                    {projects.map((project:any, index:any) => {
+                       return (<option key={index} value={project.project_id}>{project.project_title}</option>)
                     })}
                 </select>
             </div>
+        
             <div>
                 <label htmlFor="test-title">Test Title</label>
                 <input type="text" id="test-title" name="test-title" aria-describedby="title-error" />
@@ -84,12 +98,12 @@ const CreateTestForm = () => {
                     )
                 })}
                 </div>
-                <select name="acceptance-criteria" id="acceptance-criteria" onChange={e => {setAcceptanceCriteria([...acceptanceCriteria, e.target.value])}}>
+                {/* <select name="acceptance-criteria" id="acceptance-criteria" onChange={e => {setAcceptanceCriteria([...acceptanceCriteria, e.target.value])}}>
                 <option value="">Select acceptance criteria</option>
                     {(currentProject > -1) && projects[currentProject].acs.map((ac, index) => {
                        return (<option key={index} value={ac.criteria}>{ac.criteria}</option>)
                     })}
-                </select>
+                </select> */}
                 
             </div>
 
@@ -119,12 +133,13 @@ const CreateTestForm = () => {
             <div>
                 <label htmlFor="assignee">Assignee</label>
                 <select name="assignee" id="assignee">
-                    <option value="">Assign a tester</option>
-                    {users.map((user, index) => {
-                        return (<option key={index} value={user.id}>{`${user.firstName} ${user.lastName}`}</option>)
+                    <option value="Choose a tester">Assign a tester</option>
+                    {plannerUsers.map((user: User, index: number) => {
+                        return (<option key={index} value={user.id}>{`${user.firstname} ${user.lastname}`}</option>)
                     })}
                 </select>
             </div>
+        
             <div className="btn-container">
                 <Button className="btn btn-primary" type="submit">Create test</Button>
                 <Link href="/tests" className="btn btn-secondary">Cancel</Link>

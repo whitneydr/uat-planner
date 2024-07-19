@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const SideMenu = () => {
   const pathname = usePathname();
-  console.log(pathname)
+  console.log('pathname from sidenav', usePathname());
   return (
     <nav className="nav">
       <div className="last-login desktop">
@@ -14,11 +14,11 @@ const SideMenu = () => {
         <span>Last logged in 31 July 2023 at 4.45pm</span>
       </div>
       <div className="navmenu">
-        <Link href="/projects" className={pathname.includes('/projects') ? 'active' : ''}>
+        <Link href="/projects" className={pathname?.includes('/projects') ? 'active' : ''}>
           <Image src="/icons/Business.svg" width={24} height={24} alt="" />
           Projects
         </Link>
-        <Link href="/tests" className={pathname.includes('/tests') ? 'active' : ''}>
+        <Link href="/tests" className={pathname?.includes('/tests') ? 'active' : ''}>
           <Image src="/icons/Products.svg" width={24} height={24} alt="" />
           Tests
         </Link>

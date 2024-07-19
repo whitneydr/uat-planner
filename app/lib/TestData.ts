@@ -6,11 +6,12 @@ export async function fetchLatestTests() {
     noStore();
     try {
       const data = await sql`
-          SELECT tests.project_id, tests.test_id, tests.test_title, tests.due_date, projects.project_title, plannerusers.firstname, plannerusers.lastname, tests.status
+          SELECT tests.project_id, tests.test_id, tests.test_title, tests.due_date, tests.assignee, projects.project_title, plannerusers.firstname, plannerusers.lastname, tests.status
           FROM test_table AS tests
           JOIN projects ON tests.project_id::uuid = projects.id
-          JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
+          JOIN plannerusers ON tests.assignee::uuid = plannerusers.id
           ORDER BY due_date ASC
+          LIMIT 100;
           `;
   
       const latestTests = data.rows.map((test) => ({
@@ -66,7 +67,8 @@ export async function fetchTestById(id: string) {
             test_table.status,
             test_table.outcome,
             test_table.evidence,
-            projects.project_id AS project_id_friendly
+            projects.project_id AS project_id_friendly,
+            projects.project_title
           FROM test_table
           JOIN projects ON projects.id = test_table.project_id::uuid
           WHERE test_table.test_id = ${id};

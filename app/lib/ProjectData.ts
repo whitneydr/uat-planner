@@ -15,6 +15,7 @@ export async function fetchPlannerUsers() {
       `;
 
     const plannerUsers = data.rows;
+    console.log(plannerUsers);
     return plannerUsers;
   } catch (err) {
     console.error("Database Error:", err);
@@ -37,6 +38,7 @@ export async function fetchLatestProjects() {
     const latestProjects = data.rows.map((project) => ({
       ...project,
     }));
+    console.log('Latest projects project data file', latestProjects)
     return latestProjects;
   } catch (error) {
     console.error("Database Error:", error);
@@ -99,9 +101,7 @@ export async function fetchAcceptanceCriteria(id: string) {
   }
 }
 
-// Get number of tests in a project
-
-// Fetch a project by ID
+// Count the number of tests in a project
 export async function countProjectTests(id: string) {
   noStore();
   try {
@@ -123,3 +123,11 @@ export async function countProjectTests(id: string) {
     throw new Error("Failed to fetch project.");
   }
 }
+
+// Get project uuid from friendly id
+
+export default async function projectIdFriendlyToUUID (friendlyID: any) {
+  const data = await sql`SELECT id FROM projects WHERE projects.project_id = ${friendlyID}`;
+  return data;
+}
+   
