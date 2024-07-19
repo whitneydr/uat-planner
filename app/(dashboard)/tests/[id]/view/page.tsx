@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Link href="/tests"> Back to Test List</Link>
         </div>
         <section>
-          <Link href={`/projects/${getTest?.project_id_friendly}/view`}>{getTest?.project_title}</Link>
+          <div className="breadcrumb"><Link href={`/projects/${getTest?.project_id_friendly}/view`}>{getTest?.project_title}</Link> - {getTest?.test_id}</div>
           <h1>{getTest?.test_title}</h1>
           <TestResult />
           <h2>Test description</h2>

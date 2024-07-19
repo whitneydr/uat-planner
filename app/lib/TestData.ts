@@ -29,12 +29,13 @@ export async function fetchLatestTests() {
 export async function fetchProjectTests(project: {projectFilter: string}) {
   noStore();
   try {
+    console.log('project fiter', project.projectFilter);
     const data = await sql`
         SELECT tests.project_id, tests.test_id, tests.test_title, tests.due_date, projects.project_title, plannerusers.firstname, plannerusers.lastname, tests.status, projects.project_id
         FROM test_table AS tests
-        JOIN projects ON tests.project_id::uuid = projects.id
-        JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
-        WHERE tests.project_id = ${project.projectFilter}
+        LEFT JOIN projects ON tests.project_id::uuid = projects.id
+        LEFT JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
+        WHERE tests.project_id::uuid = ${project.projectFilter}
         ORDER BY due_date ASC
         `;
 

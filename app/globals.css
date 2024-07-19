@@ -262,7 +262,8 @@ button {
 }
 
 .btn-back {
-    margin: 24px 0;
+    margin-bottom: 24px;
+    font-size: small;
 }
 
 .btn-back a {
@@ -512,6 +513,17 @@ select.test-status {
       padding:0;
       background-color: initial;
   }
+}
+
+.breadcrumb {
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 8px 0;
+  font-size:small;
+}
+
+.breadcrumb a {
+  text-decoration: none;
 }
 
 .project-details-section {

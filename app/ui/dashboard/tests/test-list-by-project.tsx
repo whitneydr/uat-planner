@@ -36,7 +36,7 @@ const ProjectTestList = async (projectFilter: any) => {
               title={test.test_title}
               projectName={test.project_title}
               status={test.status}
-              assignee={`${test.firstname} ${test.lastname}`}
+              assignee={test.firstname ? `${test.firstname} ${test.lastname}` : `Unassigned`}
             />
           );
         })}
