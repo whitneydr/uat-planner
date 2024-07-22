@@ -1,10 +1,13 @@
 import Link from "next/link";
 import {
+  fetchLatestProjects,
   fetchPlannerUsers,
   fetchProjectById,
+  fetchProjectByUUID,
   fetchUserName,
 } from "@/app/lib/ProjectData";
-import EditProjectForm from "@/app/ui/dashboard/projects/edit-project";
+import EditTestForm from "@/app/ui/dashboard/tests/edit-test";
+import { fetchTestById } from "@/app/lib/TestData";
 import { notFound } from "next/navigation";
 
 // interface Project {
@@ -25,30 +28,32 @@ import { notFound } from "next/navigation";
 // }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const projectId = params.id; // eg. UST
+  const testId = params.id; // eg. UST
 
-  const [project, plannerUsers] = await Promise.all([
-    fetchProjectById(projectId),
+  const [test, plannerUsers, projects] = await Promise.all([
+    fetchTestById(testId),
     fetchPlannerUsers(),
+    fetchLatestProjects(),
   ]);
 
-  if (!project) {
+  if (!test) {
     notFound();
   }
 
-  const currentOwner = await fetchUserName(project.owner_id);
+  const currentProject = await fetchProjectByUUID(test.project_id);
 
   return (
     <>
       <main>
         <div className="btn-back">
-          <Link href="/projects"> Back to Project List</Link>
+          <Link href="/tests"> Back to Test List</Link>
         </div>
         <section>
-          <EditProjectForm
-            project={project}
+          <EditTestForm
+            tests={test}
             plannerUsers={plannerUsers}
-            currentOwner={currentOwner}
+            projects={projects}
+            currentProject={currentProject}
           />
         </section>
       </main>

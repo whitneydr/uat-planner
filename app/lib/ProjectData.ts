@@ -88,6 +88,34 @@ export async function fetchProjectById(id: string) {
   }
 }
 
+// Fetch a project by long ID ie. UUID
+export async function fetchProjectByUUID(id: string) {
+  noStore();
+  try {
+    const data = await sql`
+        SELECT
+          projects.id,
+          projects.project_id,
+          projects.project_title,
+          projects.due_date,
+          projects.owner_id,
+          projects.status,
+          projects.summary
+        FROM projects
+        WHERE projects.id::varchar = ${id}
+      `;
+
+    const project = data.rows.map((project) => ({
+      ...project,
+    }));
+    console.log(project);
+    return project[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch project.");
+  }
+}
+
 // Fetch list of acceptance criteria from AC database, based on the project ID
 
 export async function fetchAcceptanceCriteria(id: string) {

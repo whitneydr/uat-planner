@@ -9,6 +9,7 @@ import { CreateProject } from "@/app/lib/actions";
 import { State } from "@/app/lib/actions";
 import createProject from "@/app/lib/createProject";
 
+
 const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
     
 
@@ -25,7 +26,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
         <form className="project-form" action={createProject}>
             <div>
                 <label htmlFor="project-title">Project Title</label>
-                <input type="text" id="project-title" name="project-title" aria-describedby="title-error" />
+                <input type="text" id="project-title" name="project-title" aria-describedby="title-error" required />
                 <div id="title-error" aria-live="polite" aria-atomic="true" className="error-message">Title error</div>
             </div>
             <div>

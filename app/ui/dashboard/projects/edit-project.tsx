@@ -33,7 +33,7 @@ const EditProjectForm = ({project, plannerUsers, currentOwner}: {project: any; p
         <form className="project-form" action={updateProjectWithId}>
             <div>
                 <label htmlFor="project-title">Project Title</label>
-                <input type="text" id="project-title" name="project-title" aria-describedby="title-error" defaultValue={project.project_title} />
+                <input type="text" id="project-title" name="project-title" aria-describedby="title-error" defaultValue={project.project_title} required />
                 <div id="title-error" aria-live="polite" aria-atomic="true" className="error-message">Title error</div>
             </div>
             <div>

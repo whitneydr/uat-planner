@@ -1,13 +1,10 @@
 import Link from "next/link";
-import ProjectSummary from "@/app/ui/dashboard/projects/project-summary";
 import AcceptanceCriteria from "@/app/ui/dashboard/projects/acceptance-criteria";
 import Progress from "@/app/ui/dashboard/projects/progress";
-import {projects} from '@/app/lib/placeholder-data';
 import { countProjectTests, fetchProjectById } from "@/app/lib/ProjectData";
-import ProjectList from "@/app/ui/dashboard/projects/project-list";
-import TestList from "@/app/ui/dashboard/tests/test-list";
 import ProjectTestList from "@/app/ui/dashboard/tests/test-list-by-project";
-import { fetchProjectTests } from "@/app/lib/TestData";
+import { notFound } from "next/navigation";
+
 
 // interface Project {
 //     id: string,
@@ -36,6 +33,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 
     const getProject = await fetchProjectById(projectId);
     const getTestCount = await countProjectTests(projectId);
+
+    if(!getProject) {
+        notFound();
+    }
    
    
     console.log('getProject', getProject);
