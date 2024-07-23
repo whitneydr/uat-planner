@@ -1,5 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { unstable_noStore as noStore } from "next/cache";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 
 export async function fetchLatestTests() {
@@ -84,4 +86,22 @@ export async function fetchTestById(id: string) {
       console.error("Database Error:", error);
       throw new Error("Failed to fetch test.");
     }
+  }
+
+  export default async function updateTestStatus({test_id}: {test_id: any}, status: any) {
+    noStore();
+    try {
+      console.log('updateTestStatus line 92', test_id, status)
+      await sql`
+        UPDATE test_table
+        SET status = ${status}
+        WHERE test_id = ${test_id}
+      `
+
+    } catch (error) {
+      console.error("Database Error:", error);
+      throw new Error("Failed to update status.")
+    }
+    revalidatePath("/tests");
+  redirect("/tests");
   }

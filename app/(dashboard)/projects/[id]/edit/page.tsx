@@ -7,31 +7,15 @@ import {
 import EditProjectForm from "@/app/ui/dashboard/projects/edit-project";
 import { notFound } from "next/navigation";
 
-// interface Project {
-//     id: string,
-//     title: string,
-//     summary?: string,
-//     deadline?: Date,
-//     status: 'In progress' | 'Complete' | 'Backlog',
-//     owner: string,
-//     tests?: string[],
-//     acs?: AcceptanceCriteria[]
-// }
-
-// interface AcceptanceCriteria {
-//     id?: string,
-//     criteria?: string,
-//     status?: 'In progress' | 'Complete' | 'No tests assigned'
-// }
-
 export default async function Page({ params }: { params: { id: string } }) {
-  const projectId = params.id; // eg. UST
+  const projectId = params.id; // Friendly project id eg. UTS or SAH
 
   const [project, plannerUsers] = await Promise.all([
     fetchProjectById(projectId),
     fetchPlannerUsers(),
   ]);
 
+  // Throws a 'not found' message if the project does not exist in the database
   if (!project) {
     notFound();
   }

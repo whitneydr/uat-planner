@@ -116,7 +116,7 @@ export async function fetchProjectByUUID(id: string) {
   }
 }
 
-// Fetch list of acceptance criteria from AC database, based on the project ID
+// Fetch list of acceptance criteria from AC database, based on the friendly project ID
 
 export async function fetchAcceptanceCriteria(id: string) {
   noStore();
@@ -148,17 +148,18 @@ export async function countProjectTests(id: string) {
   try {
     const data = await sql`
         SELECT COUNT(*),
-        project_id
+        test_table.project_id
         FROM test_table
-        WHERE project_id = ${id}
-        GROUP BY project_id
+        JOIN projects ON projects.id = test_table.project_id::uuid
+        WHERE projects.project_id = ${id}
+        GROUP BY test_table.project_id
       `;
 
     const project = data.rows.map((project) => ({
       ...project,
     }));
     console.log(project);
-    return project[0];
+    return Number(project[0].count);
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch project.");

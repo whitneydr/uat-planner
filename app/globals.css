@@ -437,6 +437,10 @@ select.test-status {
   color:#fff;
 }
 
+.test-status.in-progress {
+  background-color: var(--progress-yellow);
+}
+
 
 .test-filters {
   display: flex;

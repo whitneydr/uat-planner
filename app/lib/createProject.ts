@@ -10,7 +10,7 @@ export default async function createProject(formData: FormData) {
     project_title: formData.get("project-title")?.toString(),
     project_summary: formData.get("project-summary")?.toString(),
     due_date: formData.get("due-date")?.toString(),
-    status: formData.get("project-status")?.toString(),
+    status: formData.get("project-status")?.toString()
   };
 
   console.log(rawFormData);
@@ -33,6 +33,8 @@ export default async function createProject(formData: FormData) {
 
   const project_id = generateProjectId(rawFormData.project_title);
   console.log("new project id", project_id);
+
+  const ac_id = "AC1"
 
   // mutate data
 

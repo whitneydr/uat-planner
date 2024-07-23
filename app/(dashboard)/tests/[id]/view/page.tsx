@@ -9,6 +9,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const testId = params.id; // eg. UST
 
   const getTest = await fetchTestById(testId);
+  console.log('getTest', getTest);
 
   if(!getTest) {
     notFound();
@@ -16,6 +17,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const testSteps = getTest?.test_steps;
   const testData = getTest?.test_data;
+  const testLongId = getTest?.id.toString();
+
+  console.log('testLongId', testLongId);
+  console.log('whats the status', getTest?.status);
 
   
 
@@ -28,7 +33,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <section>
           <div className="breadcrumb"><Link href={`/projects/${getTest?.project_id_friendly}/view`}>{getTest?.project_title}</Link> - {getTest?.test_id}</div>
           <h1>{getTest?.test_title}</h1>
-          <TestResult />
+          <TestResult test_id={testId} status={getTest?.status} />
           <h2>Test description</h2>
           <p>{getTest?.test_description}</p>
           <Link href={`/tests/${testId}/edit`}>Edit description</Link>

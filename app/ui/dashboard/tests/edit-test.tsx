@@ -66,32 +66,32 @@ const EditTestForm = ({plannerUsers, tests, projects, currentProject}: {plannerU
             <div>
                 <label htmlFor="test-title">Test Title</label>
                 <input type="text" id="test-title" name="test-title" aria-describedby="title-error" defaultValue={tests.test_title} required />
-                <div id="title-error" aria-live="polite" aria-atomic="true" className="error-message">Title error</div>
+               
             </div>
             <div>
                 <label htmlFor="test-description">Test description</label>
                 <textarea name="test-description" id="test-description" aria-describedby="summary-error" defaultValue={tests.test_description}/>
-                <div id="summary-error" aria-live="polite" aria-atomic="true" className="error-message">Summary error</div>
+            
             </div>
             <div>
                 <label htmlFor="acceptance-criteria">Acceptance criteria</label>
                 <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
                 <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
                 <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
-                <div id="ac-error" aria-live="polite" aria-atomic="true" className="error-message">AC error</div> 
+               
             </div>
             <div>
                 <label htmlFor="due-date">Due date</label>
                 <input type="date" name="due-date" id="due-date" aria-describedby="date-error" defaultValue={tests.due_date.toISOString().split('T')[0]} />
-                <div id="date-error" aria-live="polite" aria-atomic="true" className="error-message">Date error</div>
+                
             </div>
             <div>
                 <label htmlFor="test-status">Status</label>
                 <select name="test-status" id="test-status" defaultValue={tests.status}>
                     <option value="to-do">To do</option>
                     <option value="in-progress">In progress</option>
-                    <option value="complete">Complete</option>
-                    <option value="backlog">Backlog</option>
+                    <option value="passed">Passed</option>
+                    <option value="failed">Failed</option>
                 </select>
             </div>
             <div>
