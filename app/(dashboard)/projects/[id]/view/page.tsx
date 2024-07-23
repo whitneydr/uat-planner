@@ -1,7 +1,7 @@
 import Link from "next/link";
 import AcceptanceCriteria from "@/app/ui/dashboard/projects/acceptance-criteria";
 import Progress from "@/app/ui/dashboard/projects/progress";
-import { countProjectTests, fetchProjectById } from "@/app/lib/ProjectData";
+import { fetchProjectById } from "@/app/lib/ProjectData";
 import ProjectTestList from "@/app/ui/dashboard/tests/test-list-by-project";
 import { notFound } from "next/navigation";
 
@@ -9,14 +9,13 @@ export default async function Page({ params }: { params: { id: string } }) {
   const projectId = params.id; // Friendly project id eg. UTS or SAH
 
   const getProject = await fetchProjectById(projectId);
-  const getTestCount = await countProjectTests(projectId);
+
 
   // Throws not found message if project doesn't exist in the database
   if (!getProject) {
     notFound();
   }
 
-  console.log('getTestCount', getTestCount);
 
   return (
     <>
@@ -40,7 +39,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           </p>
           <AcceptanceCriteria projectId={projectId} />
 
-          <Progress />
+          <Progress project_id={projectId} />
 
           <div className="project-details-section">
             <h2>Tests</h2>
