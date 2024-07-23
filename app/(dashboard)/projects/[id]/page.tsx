@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
             {/* <AcceptanceCriteria projectId={id}/> */}
 
-            <Progress />
+            {/* <Progress /> */}
 
             <div className="project-details-section">
                 <h2>Tests</h2>
