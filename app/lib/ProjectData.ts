@@ -44,7 +44,7 @@ export async function fetchLatestProjects() {
     const data = await sql`
         SELECT projects.project_id, projects.project_title, projects.due_date, projects.owner_id, plannerusers.firstname, plannerusers.lastname, projects.status
         FROM projects
-        LEFT JOIN plannerusers ON projects.owner_id::uuid = plannerusers.id
+        LEFT JOIN plannerusers ON projects.owner_id = plannerusers.id::varchar
         ORDER BY due_date ASC
         `;
 

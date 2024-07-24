@@ -25,7 +25,7 @@ console.log(rawFormData);
     const project_id = getProjectId.rows[0].project_id;
     const numberOfTests =
       await sql`SELECT COUNT(DISTINCT test_title) FROM test_table
-                JOIN projects ON test_table.project_id::uuid = projects.id
+                JOIN projects ON test_table.project_id = projects.id::varchar
                 WHERE projects.project_title = ${project_title};`;
     const testNumber = (Number(numberOfTests.rows[0].count) + 1)
       .toString()
