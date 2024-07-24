@@ -128,7 +128,7 @@ export async function fetchAcceptanceCriteria(id: string) {
         ac.ac_status,
         projects.project_id
       FROM acceptance_criteria AS ac
-      JOIN projects ON ac.project_id::uuid = projects.id
+      JOIN projects ON ac.project_id = projects.id::varchar
       WHERE projects.project_id = ${id}
     `;
     const acceptanceCriteria = data.rows.map((ac) => ({
@@ -150,7 +150,7 @@ export async function countProjectTests(id: string) {
         SELECT COUNT(*),
         test_table.project_id
         FROM test_table
-        JOIN projects ON projects.id = test_table.project_id::uuid
+        JOIN projects ON projects.id::varchar = test_table.project_id
         WHERE projects.project_id = ${id}
         GROUP BY test_table.project_id
       `;

@@ -26,9 +26,9 @@ export default function Header() {
             {/* <h1>{heading}</h1> */}
         </div>
         <div className="create-new">
-            <Link className="btn btn-secondary" href="/projects/create">
+            <Link className="btn btn-secondary" href="/projects/create" id="new-project-button">
             + New Project</Link>
-            <Link className="btn btn-primary" href="/tests/create">
+            <Link className="btn btn-primary" href="/tests/create" id="new-test-button">
                 + New Test
             </Link>
         </div>

@@ -10,7 +10,7 @@ export async function totalProjectTests(id: string) {
           SELECT COUNT(*),
           test_table.project_id
           FROM test_table
-          JOIN projects ON projects.id = test_table.project_id::uuid
+          JOIN projects ON projects.id::varchar = test_table.project_id
           WHERE projects.project_id = ${id}
           GROUP BY test_table.project_id
         `;
@@ -41,7 +41,7 @@ export async function countProjectTestsByStatus(id: string, status: string) {
           SELECT COUNT(*),
           test_table.project_id
           FROM test_table
-          JOIN projects ON projects.id = test_table.project_id::uuid
+          JOIN projects ON projects.id::varchar = test_table.project_id
           WHERE projects.project_id = ${id} AND test_table.status = ${status}
           GROUP BY test_table.project_id
         `;

@@ -26,7 +26,7 @@ export default async function createTest(formData: FormData) {
   async function generateTestId(project_id: any) {
     const numberOfTests =
       await sql`SELECT COUNT(DISTINCT test_title) FROM test_table
-                JOIN projects ON test_table.project_id::uuid = projects.id
+                JOIN projects ON test_table.project_id = projects.id::varchar
                 WHERE projects.project_id = ${project_id};`;
     const testNumber = (Number(numberOfTests.rows[0].count) + 1)
       .toString()
