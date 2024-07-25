@@ -9,14 +9,6 @@ const ProjectTestList = async (projectFilter: any) => {
 
   return (
     <>
-      <div className="test-filters">
-        <a href="#" className="active">
-          All
-        </a>
-        <a href="#">To do</a>
-        <a href="#">Passed</a>
-        <a href="#">Failed</a>
-      </div>
       <div className="test-list">
         <div className="test-block test-block-headings desktop">
           <div className="test-details">

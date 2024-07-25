@@ -8,12 +8,12 @@ const TestList = async () => {
 
     return (
         <>
-        <div className="test-filters">
+        {/* <div className="test-filters">
             <a href="#" className="active">All</a>
             <a href="#">To do</a>
             <a href="#">Passed</a>
             <a href="#">Failed</a>
-        </div>
+        </div> */}
         <div className="test-list">
             <div className="test-block test-block-headings desktop">
                 <div className="test-details">
@@ -29,10 +29,6 @@ const TestList = async () => {
             {latestTests.map((test, index) => {
                 return <TestItem key={index} id={test.test_id ? test.test_id : index} title={test.test_title} projectName={test.project_title} status={test.status} assignee={`${test.firstname} ${test.lastname}`} />
             })}
-
-            {/* {latestTests.map((test, index) => {
-                return <TestItem key={index} id={test.test_id ? test.test_id : index} title={test.test_title} projectName={test.project_title} status={test.status} assignee={`${test.firstname} ${test.lastname}`} />
-            })} */}
 
             
         </div>
