@@ -35,13 +35,16 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h1>{getTest?.test_title}</h1>
           <div className={`test-status ${getTest?.status}`}>{getTest?.status}</div>
           {/* <TestResult test_id={testId} status={getTest?.status} /> */}
+          <div className="test-details-section">
           <h2>Test description</h2>
           <p>{getTest?.test_description}</p>
-          <Link href={`/tests/${testId}/edit`}>Edit description</Link>
-          <h2>Test steps</h2>
+          <Link href={`/tests/${testId}/edit`} className="edit-link" title="Edit the test">Edit description</Link>
+          </div>
+          
+          {/* <h2>Test steps</h2>
           {testSteps ? <div dangerouslySetInnerHTML={{__html: testSteps}}></div> : ""}
           <h2>Test data</h2>
-          {testData? <div dangerouslySetInnerHTML={{__html: testData}}></div> : ""}
+          {testData? <div dangerouslySetInnerHTML={{__html: testData}}></div> : ""} */}
 
           <AcceptanceCriteria projectId={getTest?.project_id_friendly} />
           <TestOutcome />

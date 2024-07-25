@@ -57,6 +57,7 @@ h3 {
 
 p {
     max-width: 640px;
+    margin-bottom: 1.5rem;
 }
 
 a {
@@ -277,6 +278,7 @@ button {
   margin: 24px 0;
   flex-wrap: wrap;
 }
+
 
 /* Header */
 
@@ -531,19 +533,16 @@ select.test-status {
   text-decoration: none;
 }
 
-.project-details-section {
-  margin: 48px 0 32px 0;
+.project-details-section, .test-details-section {
+  margin: 32px 0;
   max-width: 940px;
 }
 
-.project-details-section h2 {
-  margin-bottom: 24px;
-}
 
 .edit-link {
   color: var(--dark-forest);
   text-decoration: underline;
-  margin: 24px 0;
+  margin-top: 24px;
 }
 
 .edit-button {

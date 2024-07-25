@@ -1,5 +1,15 @@
 import { test, expect } from '@playwright/test';
 
+
+test('should navigate to the Martian Bacteria test', async ({ page }) => {
+    // Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
+    await page.goto('http://localhost:3000/tests')
+    // Find an element with the text 'About' and click on it
+     await page.click('text=Martian bacteria identified by the colour red')
+    // The new page should contain an h1 with "About"
+    await expect(page.locator('h1')).toContainText('Martian bacteria identified by the colour red')
+  })
+
 test('Navigate from test to project, and then back to dashboard', async ({ page }) => {
     await page.goto('http://localhost:3000/tests/SBT-02-01/view');
     await page.getByRole('link', { name: 'Self buttering toaster' }).click();

@@ -72,8 +72,11 @@ export async function fetchProjectById(id: string) {
           projects.due_date,
           projects.owner_id,
           projects.status,
-          projects.summary
+          projects.summary,
+          plannerusers.firstname, 
+          plannerusers.lastname
         FROM projects
+        LEFT JOIN plannerusers ON projects.owner_id = plannerusers.id::varchar
         WHERE projects.project_id = ${id}
       `;
 

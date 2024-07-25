@@ -9,6 +9,7 @@ const ProjectTestList = async (projectFilter: any) => {
 
   return (
     <>
+   
       <div className="test-list">
         <div className="test-block test-block-headings desktop">
           <div className="test-details">
@@ -28,14 +29,18 @@ const ProjectTestList = async (projectFilter: any) => {
               title={test.test_title}
               projectName={test.project_title}
               status={test.status}
-              assignee={test.firstname ? `${test.firstname} ${test.lastname}` : `Unassigned`}
+              assignee={
+                test.firstname
+                  ? `${test.firstname} ${test.lastname}`
+                  : `Unassigned`
+              }
             />
           );
         })}
-
-      
       </div>
-      <Link href='/tests/create' className='btn btn-secondary'>+ Add test</Link>
+      <Link href="/tests/create" className="btn btn-secondary" title="Add a new test to this project">
+        + Add a new test
+      </Link>
     </>
   );
 };

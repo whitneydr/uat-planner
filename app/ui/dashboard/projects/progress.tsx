@@ -1,4 +1,5 @@
 import calculatePercentageOfTests, { countProjectTestsByStatus, totalProjectTests } from "@/app/lib/ProgressReport";
+import Link from "next/link";
 
 const Progress = async ({project_id}: {project_id: any}) => {
 
@@ -24,22 +25,22 @@ const Progress = async ({project_id}: {project_id: any}) => {
         <div id="progress" className="project-details-section">
                 <h2>Progress</h2>
 
+                {totalTests < 1 ? <div className="no-progress"><p>Nothing to see here. <Link href={'/tests/create'} title="Create a test">Add a test</Link> to get started</p></div> : ""}
+
                 <div id="progress-bar">
                     <div id="to-do" style={toDoTests ? {width: `${percentageToDo}%`} : {display: "none"}}>{`${percentageToDo}%`}</div>
                     <div id="in-progress" style={inProgressTests ? {width: `${percentageInProgress}%`} : {display: "none"}}>{`${percentageInProgress}%`}</div>
                     <div id="passed" style={passedTests ? {width: `${percentagePassed}%`} : {display: "none"}}>{`${percentagePassed}%`}</div>
                     <div id="failed" style={failedTests? {width: `${percentageFailed}%`} : {display: "none"}}>{`${percentageFailed}%`}</div>
                 </div>
-                <div className="progress-key">
-                    
+                {totalTests > 0 ? <div className="progress-key">                 
                         <ul>
                             <li className="grey">To do</li>
                             <li className="yellow">In progress</li>
                             <li className="green">Passed</li>
                             <li className="red">Failed</li>
-                        </ul>
-                    
-                </div>
+                        </ul> 
+                </div> : ""}
             </div>
     )
 }
