@@ -23,6 +23,7 @@ console.log(rawFormData);
   async function generateTestId(project_title: any) {
     const getProjectId = await sql`SELECT project_id FROM projects WHERE projects.project_title = ${project_title}`;
     const project_id = getProjectId.rows[0].project_id;
+    const longProjectId = await getLongProjectId(rawFormData.project_title);
     const numberOfTests =
       await sql`SELECT COUNT(DISTINCT test_title) FROM test_table
                 JOIN projects ON test_table.project_id = projects.id::varchar
@@ -33,9 +34,11 @@ console.log(rawFormData);
     const testIteration = await sql`SELECT test_title, COUNT(id)
                                     FROM test_table
                                     WHERE test_title = ${rawFormData.test_title} 
-                                    AND project_id = ${project_title}
+                                    AND project_id = ${longProjectId}
                                     GROUP BY test_title;`;
-    const testVersion = testIteration.rows.length > 0 ? (Number(testIteration.rows[0].count) + 1)
+    console.log('testIteration', testIteration);
+    console.log('testIterationRows', testIteration.rows[0])
+    const testVersion = testIteration.rows[0] ? (Number(testIteration.rows[0].count) + 1)
       .toString()
       .padStart(2, "0") : '01';
 
