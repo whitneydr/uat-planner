@@ -25,6 +25,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
         <section>
           <h1>{getProject.project_title}</h1>
+          <div className={`project-page project-status ${getProject.status}`}>{getProject.status}</div>
           <h2>Project summary</h2>
           <p>{getProject.summary}</p>
           <Link href={`/projects/${projectId}/edit`}>Edit summary</Link>

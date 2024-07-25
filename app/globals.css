@@ -42,6 +42,7 @@ main {
 
 h1 {
     font-size: 2em;
+    line-height: 2;
 }
 
 h2 {
@@ -885,6 +886,11 @@ header h1 {
 .project-status.complete {
   background-color: var(--dark-forest);
   color:#fff;
+}
+
+.project-page.project-status {
+  margin-left:0;
+  width:fit-content;
 }
 
 
