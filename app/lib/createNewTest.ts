@@ -35,7 +35,7 @@ console.log(rawFormData);
                                     WHERE test_title = ${rawFormData.test_title} 
                                     AND project_id = ${project_title}
                                     GROUP BY test_title;`;
-    const testVersion = testIteration.rows[0] ? (Number(testIteration.rows[0].count) + 1)
+    const testVersion = testIteration.rows.length > 0 ? (Number(testIteration.rows[0].count) + 1)
       .toString()
       .padStart(2, "0") : '01';
 

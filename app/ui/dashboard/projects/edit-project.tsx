@@ -8,7 +8,7 @@ import { useState } from "react";
 import { CreateProject } from "@/app/lib/actions";
 import { State } from "@/app/lib/actions";
 import createProject from "@/app/lib/createProject";
-import editProject from "@/app/lib/editProject";
+import editProject from "../../../lib/editProject";
 import { fetchUserName } from "@/app/lib/ProjectData";
 
 const EditProjectForm = ({project, plannerUsers, currentOwner}: {project: any; plannerUsers: any; currentOwner: string}) => {
@@ -38,7 +38,7 @@ const EditProjectForm = ({project, plannerUsers, currentOwner}: {project: any; p
             </div>
             <div>
                 <label htmlFor="project-summary">Project summary</label>
-                <textarea name="project-summary" id="project-summary" aria-describedby="summary-error" defaultValue={project.summary} />
+                <textarea name="project-summary" id="project-summary" aria-describedby="summary-error" defaultValue={project.summary} required/>
                 
             </div>
             <div>
@@ -50,12 +50,12 @@ const EditProjectForm = ({project, plannerUsers, currentOwner}: {project: any; p
             </div>
             <div>
                 <label htmlFor="due-date">Due date</label>
-                <input type="date" name="due-date" id="due-date" aria-describedby="date-error" defaultValue={project.due_date.toISOString().split('T')[0]} />
+                <input type="date" name="due-date" id="due-date" aria-describedby="date-error" defaultValue={project.due_date.toISOString().split('T')[0]} required />
                 
             </div>
             <div>
                 <label htmlFor="project-status">Status</label>
-                <select name="project-status" id="project-status" defaultValue={project.status}>
+                <select name="project-status" id="project-status" defaultValue={project.status} required>
                     <option value="to-do">To do</option>
                     <option value="in-progress">In progress</option>
                     <option value="complete">Complete</option>
@@ -64,7 +64,7 @@ const EditProjectForm = ({project, plannerUsers, currentOwner}: {project: any; p
             </div>
             <div>
                 <label htmlFor="project-owner">Project owner</label>
-                <select name="project-owner" id="project-owner" defaultValue={project.owner_id ? project.owner_id : ""}>
+                <select name="project-owner" id="project-owner" defaultValue={project.owner_id ? project.owner_id : ""} required>
                     <option value="" disabled>Choose a project owner</option>
                     {plannerUsers.map((user: User, index: number) => {
                         return (<option key={index} value={user.id}>{`${user.firstname} ${user.lastname}`}</option>)

@@ -6,10 +6,9 @@ interface Props {
     deadline: string;
     owner: string;
     status: string;
-    onClick: () => void;
 }
 
-const ProjectItem = ({id, title, deadline, owner, status, onClick}: Props) => {
+const ProjectItem = ({id, title, deadline, owner, status}: Props) => {
     // let statusClass;
     // if (status.toLowerCase() === "in progress") {
     //     statusClass = "in-progress"

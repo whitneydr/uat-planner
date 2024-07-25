@@ -7,7 +7,7 @@ import { users } from "@/app/lib/placeholder-data";
 import { useState } from "react";
 import { CreateProject } from "@/app/lib/actions";
 import { State } from "@/app/lib/actions";
-import createProject from "@/app/lib/createProject";
+import createProject from "../../../lib/createProject";
 
 
 const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
@@ -30,7 +30,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
             </div>
             <div>
                 <label htmlFor="project-summary">Project summary</label>
-                <textarea name="project-summary" id="project-summary" aria-describedby="summary-error" />
+                <textarea name="project-summary" id="project-summary" aria-describedby="summary-error" required />
             </div>
             <div>
                 <label htmlFor="acceptance-criteria">Acceptance criteria</label>
@@ -40,11 +40,11 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
             </div>
             <div>
                 <label htmlFor="due-date">Due date</label>
-                <input type="date" name="due-date" id="due-date" aria-describedby="date-error" />
+                <input type="date" name="due-date" id="due-date" aria-describedby="date-error" required />
             </div>
             <div>
                 <label htmlFor="project-status">Status</label>
-                <select name="project-status" id="project-status">
+                <select name="project-status" id="project-status" required>
                     <option value="to-do">To do</option>
                     <option value="in-progress">In progress</option>
                     <option value="complete">Complete</option>
@@ -53,7 +53,7 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
             </div>
             <div>
                 <label htmlFor="project-owner">Project owner</label>
-                <select name="project-owner" id="project-owner">
+                <select name="project-owner" id="project-owner" required>
                     <option value="Choose a project owner">Choose a project owner</option>
                     {plannerUsers.map((user: User, index: number) => {
                         return (<option key={index} value={user.id}>{`${user.firstname} ${user.lastname}`}</option>)

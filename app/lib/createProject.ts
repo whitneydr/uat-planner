@@ -10,7 +10,8 @@ export default async function createProject(formData: FormData) {
     project_title: formData.get("project-title")?.toString(),
     project_summary: formData.get("project-summary")?.toString(),
     due_date: formData.get("due-date")?.toString(),
-    status: formData.get("project-status")?.toString()
+    status: formData.get("project-status")?.toString(),
+    owner_id: formData.get("project-owner")?.toString()
   };
 
   console.log(rawFormData);
@@ -40,8 +41,8 @@ export default async function createProject(formData: FormData) {
 
   try {
     if (!rawFormData.project_title) throw new Error("Project title required");
-    await sql`INSERT INTO Projects (project_id, project_title, due_date, status, summary) VALUES 
-    (${project_id}, ${rawFormData.project_title}, ${rawFormData.due_date}, ${rawFormData.status}, ${rawFormData.project_summary});`;
+    await sql`INSERT INTO Projects (project_id, project_title, due_date, status, summary, owner_id) VALUES 
+    (${project_id}, ${rawFormData.project_title}, ${rawFormData.due_date}, ${rawFormData.status}, ${rawFormData.project_summary}, ${rawFormData.owner_id});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
