@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 
 
 export default async function editTest(id: string, formData: FormData) {
+  // Gather data from edit test form
   const rawFormData = {
     project_title: formData.get("project-title")?.toString(),
     test_title: formData.get("test-title")?.toString(),
@@ -18,35 +19,7 @@ export default async function editTest(id: string, formData: FormData) {
     assignee: formData.get("assignee")?.toString(),
     outcome: formData.get("test-outcome")?.toString()
   };
-console.log(rawFormData);
-console.log('edit test id', id);
 
-  // Create a user-friendly test ID based on the name of the project and the version of the test
-  async function generateTestId(project_title: any) {
-    const getProjectId = await sql`SELECT project_id FROM projects WHERE projects.project_title = ${project_title}`;
-    const project_id = getProjectId.rows[0].project_id;
-    const longProjectId = await getLongProjectId(rawFormData.project_title);
-    const numberOfTests =
-      await sql`SELECT COUNT(DISTINCT test_title) FROM test_table
-                JOIN projects ON test_table.project_id = projects.id::varchar
-                WHERE projects.project_title = ${project_title};`;
-    const testNumber = (Number(numberOfTests.rows[0].count) + 1)
-      .toString()
-      .padStart(2, "0");
-    const testIteration = await sql`SELECT test_title, COUNT(id)
-                                    FROM test_table
-                                    WHERE test_title = ${rawFormData.test_title} 
-                                    AND project_id = ${longProjectId}
-                                    GROUP BY test_title;`;
-    const testVersion = testIteration.rows[0] ? (Number(testIteration.rows[0].count) + 1)
-      .toString()
-      .padStart(2, "0") : '01';
-
-    return `${project_id}-${testNumber}-${testVersion}`;
-  }
-
-  const test_id = await generateTestId(rawFormData.project_title);
-  console.log('test_id', test_id)
   // mutate data
 
   async function getLongProjectId(project_title: string | undefined) {
@@ -57,12 +30,12 @@ console.log('edit test id', id);
   const longProjectId = await getLongProjectId(rawFormData.project_title);
   const test_outcome = rawFormData.outcome ? rawFormData.outcome : ""; // Force an empty string so it doesn't break
   
+  // Update database with new values
   try {
     if (!rawFormData.test_title) throw new Error("Test title required");
     await sql`
         UPDATE test_table 
         SET project_id = ${longProjectId}, 
-            test_id = ${test_id}, 
             test_title = ${rawFormData.test_title}, 
             test_description = ${rawFormData.test_description},
             test_steps = ${rawFormData.test_steps},

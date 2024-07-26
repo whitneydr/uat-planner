@@ -19,13 +19,14 @@ export default async function editProject(id: string, formData: FormData) {
     ac_4: formData.get("acceptance-criteria-4")?.toString()
   };
 
-  const ac_1 = rawFormData.ac_1 != undefined ? rawFormData.ac_1 : "";
-  const ac_2 = rawFormData.ac_2 != null ? rawFormData.ac_2 : "";
-  const ac_3 = rawFormData.ac_3 != undefined ? rawFormData.ac_3 : "";
-  const ac_4 = rawFormData.ac_4 != null ? rawFormData.ac_4 : "";
+  const ac_1 = rawFormData?.ac_1 ? rawFormData?.ac_1 : "";
+  const ac_2 = rawFormData?.ac_2 ? rawFormData?.ac_2 : "";
+  const ac_3 = rawFormData?.ac_3 ? rawFormData?.ac_3 : "";
+  const ac_4 = rawFormData?.ac_4 ? rawFormData?.ac_4 : "";
 
   console.log('raw form data', rawFormData);
   console.log('ac_1', ac_1);
+  console.log('ac_1', typeof ac_1);
   console.log('ac_2', ac_2);
   console.log('ac_3', ac_3);
   console.log('ac_4', ac_4);
@@ -67,28 +68,43 @@ export default async function editProject(id: string, formData: FormData) {
   }
 
   const acs = await fetchAcceptanceCriteria(project_id);
-  const project_uuid = await projectIdFriendlyToUUID(id);
+  const project_uuid = await projectIdFriendlyToUUID(project_id);
   console.log('acs editProject line 61', acs)
 
-  /*
   try {
     await sql`
       UPDATE acceptance_criteria
-      SET ac_summary = new.updated_ac
-      FROM (
-        VALUES 
-          (${acs[0].ac_id}, ${rawFormData.ac_1}),
-          (${acs[1].ac_id}), ${rawFormData.ac_2}),
-          (${acs[2].ac_id}), ${rawFormData.ac_3}),
-          (${acs[3].ac_id}), ${rawFormData.ac_4})
-      ) AS new(ac_id, updated_ac)
-       WHERE project_id = ${project_uuid.rows[0].id} AND
-       acceptance_criteria.ac_id = new.ac_id
+        SET ac_summary = 
+          CASE ac_id 
+          WHEN 'AC1' THEN ${ac_1}
+          WHEN 'AC2' THEN ${ac_2}
+          WHEN 'AC3' THEN ${ac_3}
+          WHEN 'AC4' THEN ${ac_4}
+          END
+      WHERE project_id = ${project_uuid.rows[0].id};
     `;
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 })
+    return NextResponse.json({ error }, { status: 500 });
   }
-    */
+  
+  // try {
+  //   await sql`
+  //     UPDATE acceptance_criteria
+  //     SET ac_summary = new.updated_ac
+  //     FROM (
+  //       VALUES 
+  //         ('AC1', ${ac_1}),
+  //         ('AC2', ${ac_2}),
+  //         ('AC3', ${ac_3}),
+  //         ('AC4', ${ac_4})
+  //     ) AS new(ac_id, updated_ac)
+  //      WHERE project_id = ${project_uuid.rows[0].id} AND
+  //      acceptance_criteria.ac_id = new.ac_id
+  //   `;
+  // } catch (error) {
+  //   return NextResponse.json({ error }, { status: 500 })
+  // }
+    
 
 
 
