@@ -26,10 +26,7 @@ test('Navigate from test to project, and then back to dashboard', async ({ page 
     await page.getByLabel('Test Title').fill('Table still displays');
     await page.getByLabel('Test description').click();
     await page.getByLabel('Test description').fill('Table can be seen on the page');
-    await page.locator('#acceptance-criteria-1').click();
-    await page.locator('#acceptance-criteria-1').fill('AC1');
-    await page.locator('#acceptance-criteria-2').click();
-    await page.locator('#acceptance-criteria-2').fill('AC2');
+
     await page.getByLabel('Due date').fill('2024-07-26');
     await page.getByLabel('Status').selectOption('in-progress');
     await page.getByLabel('Assignee').selectOption('3620f4e1-3b27-4143-b0b5-694005596e3d');

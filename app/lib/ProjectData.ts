@@ -15,7 +15,7 @@ export async function fetchPlannerUsers() {
       `;
 
     const plannerUsers = data.rows;
-    console.log(plannerUsers);
+   // console.log(plannerUsers);
     return plannerUsers;
   } catch (err) {
     console.error("Database Error:", err);
@@ -51,7 +51,7 @@ export async function fetchLatestProjects() {
     const latestProjects = data.rows.map((project) => ({
       ...project,
     }));
-    console.log('Latest projects project data file', latestProjects)
+   // console.log('Latest projects project data file', latestProjects)
     return latestProjects;
   } catch (error) {
     console.error("Database Error:", error);
@@ -126,6 +126,7 @@ export async function fetchAcceptanceCriteria(id: string) {
   try {
     const data = await sql`
       SELECT 
+        ac.id,
         ac.ac_id,
         ac.ac_summary,
         ac.ac_status,
@@ -133,6 +134,7 @@ export async function fetchAcceptanceCriteria(id: string) {
       FROM acceptance_criteria AS ac
       JOIN projects ON ac.project_id = projects.id::varchar
       WHERE projects.project_id = ${id}
+      ORDER BY ac.ac_id
     `;
     const acceptanceCriteria = data.rows.map((ac) => ({
       ...ac,

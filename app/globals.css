@@ -279,6 +279,18 @@ button {
   flex-wrap: wrap;
 }
 
+.btn-edit {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--light-grey);
+  color: var(--dark-forest);
+}
+
+.btn-edit img {
+  margin-left: 8px;
+}
 
 /* Header */
 

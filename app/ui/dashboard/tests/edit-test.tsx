@@ -73,13 +73,7 @@ const EditTestForm = ({plannerUsers, tests, projects, currentProject}: {plannerU
                 <textarea name="test-description" id="test-description" aria-describedby="summary-error" defaultValue={tests.test_description}/>
             
             </div>
-            <div>
-                <label htmlFor="acceptance-criteria">Acceptance criteria</label>
-                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
-                <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
-                <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
-               
-            </div>
+
             <div>
                 <label htmlFor="due-date">Due date</label>
                 <input type="date" name="due-date" id="due-date" aria-describedby="date-error" defaultValue={tests.due_date.toISOString().split('T')[0]} />
@@ -103,11 +97,17 @@ const EditTestForm = ({plannerUsers, tests, projects, currentProject}: {plannerU
                     })}
                 </select>
             </div>
+            <div>
+                <label htmlFor="test-outcome">Test outcome</label>
+                <textarea name="test-outcome" id="test-outcome" aria-describedby="summary-error" defaultValue={tests.outcome}/>
+            
+            </div>
             <div className="btn-container">
                 <Button className="btn btn-primary" type="submit">Update test</Button>
                 <Link href="/tests" className="btn btn-secondary">Cancel</Link>
                 
             </div>
+           
         </form>
 
     )

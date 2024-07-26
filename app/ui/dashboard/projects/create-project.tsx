@@ -33,10 +33,14 @@ const CreateProjectForm = ({plannerUsers}: {plannerUsers: any}) => {
                 <textarea name="project-summary" id="project-summary" aria-describedby="summary-error" required />
             </div>
             <div>
-                <label htmlFor="acceptance-criteria">Acceptance criteria</label>
-                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
-                <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
-                <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
+                <label htmlFor="acceptance-criteria-1">Acceptance criteria 1</label>
+                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" required />
+                <label htmlFor="acceptance-criteria-2">Acceptance criteria 2</label>
+                <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" required />
+                <label htmlFor="acceptance-criteria-3">Acceptance criteria 3</label>
+                <input type="text" name="acceptance-criteria-3" id="acceptance-criteria-3" aria-describedby="ac-error" required />
+                <label htmlFor="acceptance-criteria-4">Acceptance criteria 4</label>
+                <input type="text" name="acceptance-criteria-4" id="acceptance-criteria-4" aria-describedby="ac-error" />
             </div>
             <div>
                 <label htmlFor="due-date">Due date</label>

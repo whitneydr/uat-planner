@@ -4,6 +4,7 @@ import Progress from "@/app/ui/dashboard/projects/progress";
 import { fetchProjectById } from "@/app/lib/ProjectData";
 import ProjectTestList from "@/app/ui/dashboard/tests/test-list-by-project";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const projectId = params.id; // Friendly project id eg. UTS or SAH
@@ -44,6 +45,8 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h2>Project owner</h2>
           <p>{getProject.firstname} {getProject.lastname}</p>
           </div>
+          <Link href={`/projects/${projectId}/edit`} title="Edit the project" className="btn btn-secondary btn-edit">Edit project <Image src="/icons/edit.svg" width={16} height={16} alt="" /></Link>
+          
           <div className="project-section">
           <AcceptanceCriteria projectId={projectId} />
             </div>

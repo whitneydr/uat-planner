@@ -4,6 +4,8 @@ import TestResult from "@/app/ui/dashboard/tests/test-result";
 import TestOutcome from "@/app/ui/dashboard/tests/test-outcome";
 import { fetchTestById } from "@/app/lib/TestData";
 import { notFound } from "next/navigation";
+import { Button } from "@/app/ui/button";
+import Image from "next/image";
 
 export default async function Page({ params }: { params: { id: string } }) {
   const testId = params.id; // eg. UST
@@ -39,6 +41,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h2>Test description</h2>
           <p>{getTest?.test_description}</p>
           <Link href={`/tests/${testId}/edit`} className="edit-link" title="Edit the test">Edit description</Link>
+          
           </div>
           
           {/* <h2>Test steps</h2>
@@ -46,8 +49,10 @@ export default async function Page({ params }: { params: { id: string } }) {
           <h2>Test data</h2>
           {testData? <div dangerouslySetInnerHTML={{__html: testData}}></div> : ""} */}
 
-          <AcceptanceCriteria projectId={getTest?.project_id_friendly} />
-          <TestOutcome />
+          {/* <AcceptanceCriteria projectId={getTest?.project_id_friendly} /> */}
+          <TestOutcome outcome={getTest.outcome} testId={testId} />
+          <Link href={`/tests/${testId}/edit`} className="btn btn-secondary btn-edit" title="Edit the test">Edit test <Image src="/icons/edit.svg" width={16} height={16} alt="" /></Link>
+          
         </section>
   
     </>

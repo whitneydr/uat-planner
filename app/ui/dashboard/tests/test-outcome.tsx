@@ -1,11 +1,13 @@
+import Link from "next/link";
 
-const TestOutcome = () => {
-
+const TestOutcome = ({outcome, testId}: {outcome: string; testId: string;}) => {
+console.log('outcome', outcome)
+const editLink = <Link href={`/tests/${testId}/edit`}>Edit to add your results</Link>
     return (
         <div className="test-outcome">
             <h2>Test outcome</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente iste blanditiis quia expedita odit veniam maiores ea dolore consequuntur voluptas? Laborum suscipit fuga quia culpa saepe illo non eos inventore?</p>
-            
+            <p>{outcome ? outcome : editLink}</p>
+           
             {/* <div className="test-evidence">
             <h3>Upload evidence</h3>
                 <input type="file" name="test-evidence" id="test-evidence" />

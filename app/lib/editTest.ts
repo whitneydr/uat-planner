@@ -16,6 +16,7 @@ export default async function editTest(id: string, formData: FormData) {
     due_date: formData.get("due-date")?.toString(),
     status: formData.get("test-status")?.toString(),
     assignee: formData.get("assignee")?.toString(),
+    outcome: formData.get("test-outcome")?.toString()
   };
 console.log(rawFormData);
 console.log('edit test id', id);
@@ -54,6 +55,7 @@ console.log('edit test id', id);
   }
 
   const longProjectId = await getLongProjectId(rawFormData.project_title);
+  const test_outcome = rawFormData.outcome ? rawFormData.outcome : ""; // Force an empty string so it doesn't break
   
   try {
     if (!rawFormData.test_title) throw new Error("Test title required");
@@ -67,7 +69,8 @@ console.log('edit test id', id);
             test_data = ${rawFormData.test_data},
             due_date = ${rawFormData.due_date}, 
             status = ${rawFormData.status}, 
-            assignee = ${rawFormData.assignee}
+            assignee = ${rawFormData.assignee},
+            outcome = ${test_outcome}
         WHERE test_id::varchar = ${id};`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

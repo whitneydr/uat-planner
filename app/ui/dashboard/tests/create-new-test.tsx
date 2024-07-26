@@ -53,13 +53,6 @@ const CreateNewTestForm = ({plannerUsers, projects,}: {plannerUsers: User[]; pro
               
             </div>
             <div>
-                <label htmlFor="acceptance-criteria">Acceptance criteria</label>
-                <input type="text" name="acceptance-criteria-1" id="acceptance-criteria-1" aria-describedby="ac-error" />
-                <label htmlFor="acceptance-criteria">Acceptance criteria 2</label>
-                <input type="text" name="acceptance-criteria-2" id="acceptance-criteria-2" aria-describedby="ac-error" />
-                
-            </div>
-            <div>
                 <label htmlFor="due-date">Due date</label>
                 <input type="date" name="due-date" id="due-date" aria-describedby="date-error" />
                
