@@ -21,7 +21,7 @@ export default function Header() {
 
     return (
          <header>
-        <div id="logo" className="desktop"><Image src="/next.svg" alt="logo" width={192} height={90} /></div>
+        <div id="logo" className="desktop"><Image src="/icons/UATopiaLogo.svg" alt="logo" width={192} height={90} /></div>
         <div className="page-title mobile">
             {/* <h1>{heading}</h1> */}
         </div>
