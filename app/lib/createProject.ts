@@ -52,8 +52,11 @@ export default async function createProject(formData: FormData) {
     return NextResponse.json({ error }, { status: 500 });
   }
 
+  const ac_1 = rawFormData.ac_1 ? rawFormData.ac_1 : "";
+  const ac_2 = rawFormData.ac_2 ? rawFormData.ac_2 : "";
+  const ac_3 = rawFormData.ac_3 ? rawFormData.ac_3 : "";
   const ac_4 = rawFormData.ac_4 ? rawFormData.ac_4 : "";
-  const acArray = [rawFormData.ac_1, rawFormData.ac_2, rawFormData.ac_3, ac_4]
+  const acArray = [ac_1, ac_2, ac_3, ac_4]
 
   const project_uuid = await projectIdFriendlyToUUID(project_id);
 

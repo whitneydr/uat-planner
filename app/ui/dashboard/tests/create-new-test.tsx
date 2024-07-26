@@ -22,7 +22,7 @@ interface User {
     lastname?: string
 }
 
-const CreateNewTestForm = ({plannerUsers, projects,}: {plannerUsers: User[]; projects: Project[]}) => {
+const CreateNewTestForm = ({plannerUsers, projects}: {plannerUsers: User[]; projects: Project[];}) => {
     console.log('whats in projects now', projects)
     console.log('whats in users', plannerUsers);
 

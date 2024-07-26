@@ -490,6 +490,7 @@ select.test-status {
 .test-outcome {
   background-color: var(--highlight-blue);
   padding: 24px 8px;
+  margin-bottom: 24px;
 }
 
 .test-evidence {
@@ -555,6 +556,7 @@ select.test-status {
   color: var(--dark-forest);
   text-decoration: underline;
   margin-top: 24px;
+  display: block;
 }
 
 .edit-button {

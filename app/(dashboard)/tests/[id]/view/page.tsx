@@ -43,6 +43,17 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Link href={`/tests/${testId}/edit`} className="edit-link" title="Edit the test">Edit description</Link>
           
           </div>
+
+          <div className="test-details-section">
+            <h2>Due date</h2>
+            <p>{getTest?.due_date.toLocaleDateString("en-gb", {
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+            })}</p>
+            <h2>Tester</h2>
+            <p>{getTest?.firstname} {getTest?.lastname}</p>
+          </div>
           
           {/* <h2>Test steps</h2>
           {testSteps ? <div dangerouslySetInnerHTML={{__html: testSteps}}></div> : ""}

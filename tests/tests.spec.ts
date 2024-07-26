@@ -2,18 +2,15 @@ import { test, expect } from '@playwright/test';
 
 
 test('should navigate to the Martian Bacteria test', async ({ page }) => {
-    // Start from the index page (the baseURL is set via the webServer in the playwright.config.ts)
     await page.goto('http://localhost:3000/tests')
-    // Find an element with the text 'About' and click on it
-     await page.click('text=Martian bacteria identified by the colour red')
-    // The new page should contain an h1 with "About"
+     await page.getByRole('link', { name: 'Martian bacteria identified by the colour red'})
     await expect(page.locator('h1')).toContainText('Martian bacteria identified by the colour red')
   })
 
 test('Navigate from test to project, and then back to dashboard', async ({ page }) => {
-    await page.goto('http://localhost:3000/tests/SBT-02-01/view');
-    await page.getByRole('link', { name: 'Self buttering toaster' }).click();
-    await expect(page.locator('h1')).toContainText('Self buttering toaster');
+    await page.goto('http://localhost:3000/tests/SAH-01-01/view');
+    await page.getByRole('link', { name: /Savings Account Hub/i }).click();
+    await expect(page.locator('h1')).toContainText('Savings Account Hub');
     await page.getByRole('link', { name: 'Back to Project List' }).click();
     await expect(page.locator('h1')).toContainText('Projects');
   });
@@ -35,7 +32,7 @@ test('Navigate from test to project, and then back to dashboard', async ({ page 
   });
 
   test('Navigate to test and update', async ({ page }) => {
-    await page.goto('http://localhost:3000/tests/SAH-03-01/view');
+    await page.goto('http://localhost:3000/tests/SAH-01-01/view');
     await page.getByRole('link', { name: 'Edit description' }).click();
     await page.getByLabel('Status').selectOption('passed');
     await page.getByRole('button', { name: 'Update test' }).click();

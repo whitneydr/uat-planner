@@ -21,9 +21,26 @@ const project = {
     summary: 'Build a tool which allows users to go through a series of questions and get a recommended account at the end'
 }
 
+const acs = [
+  {
+      id: "AC1",
+      criteria: "Samples must be categorised by element type",
+      status: "complete"
+  },
+  {
+      id: "AC2",
+      criteria: "Life forms must be categorised by colour",
+      status: "in-progress"
+  },
+  {
+      id: "AC3",
+      criteria: "Temperature must be converted to freedom units",
+      status: "to-do"
+  }
+]
 
 describe('Create Project Form', () => {
-    render(<EditProjectForm project={project} plannerUsers={placeholderUsers} currentOwner='James Blunt'/>)
+    render(<EditProjectForm project={project} plannerUsers={placeholderUsers} currentOwner='James Blunt' acceptanceCriteria={acs} />)
     test('Project title field exists', () => {
       expect(screen.getByLabelText('Project Title')).toBeDefined();
     })

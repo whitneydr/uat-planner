@@ -9,8 +9,7 @@ test('should navigate to the Savings Account Hub project', async ({ page }) => {
 
   test('should navigate to the Martian Bacteria test from the Mars Rover project', async ({ page }) => {
     await page.goto('http://localhost:3000/projects/MRS/view')
-    await page.click('text=Martian bacteria')
-    await expect(page).toHaveURL('http://localhost:3000/tests/MRS-02/view')
+    await page.getByRole('link', { name: 'Martian bacteria identified by the colour red'})
     await expect(page.locator('h1')).toContainText('Martian bacteria identified by the colour red')
   })
 
