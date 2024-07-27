@@ -76,7 +76,7 @@ export async function fetchTestById(id: string) {
             plannerusers.lastname
           FROM test_table
           JOIN projects ON projects.id::varchar = test_table.project_id
-          LEFT JOIN plannerusers ON projects.owner_id = plannerusers.id::varchar
+          LEFT JOIN plannerusers ON test_table.assignee = plannerusers.id::varchar
           WHERE test_table.test_id = ${id};
         `;
   
