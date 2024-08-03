@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { id: string } }) {
             className="btn btn-secondary btn-edit"
           >
             Edit project{" "}
-            <Image src="/icons/edit.svg" width={16} height={16} alt="" />
+            <Image src="/icons/Edit.svg" width={16} height={16} alt="" />
           </Link>
 
           <div className="project-section">

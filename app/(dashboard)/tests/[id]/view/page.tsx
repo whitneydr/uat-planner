@@ -78,7 +78,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           title="Edit the test"
         >
           Edit test{" "}
-          <Image src="/icons/edit.svg" width={16} height={16} alt="" />
+          <Image src="/icons/Edit.svg" width={16} height={16} alt="" />
         </Link>
       </section>
     </>
